@@ -1,0 +1,17 @@
+{
+  "name": "fec-service",
+  "version": "1.0.0",
+  "description": "react, babel, webpack, express, mysql",
+  "author": "andrew chung",
+  "license": "UNLICENSED",
+  "engines": {
+    "node": ">=6.13.0"
+  },
+  "scripts": {
+  },
+  "dependencies": {
+  },
+  "devDependencies": {
+    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+  }
+}
