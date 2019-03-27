@@ -1,12 +1,13 @@
 const faker = require('faker');
 
-
-var randomName = faker.name.findName(); // Rowan Nikolaus
-var randomEmail = faker.internet.email(); // Kassandra.Haley@erich.biz
-var randomCard = faker.helpers.createCard(); // random contact card containing many properties
+var getRandomInt = (min, max) => {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+};
 
 /* =================== Book Type ===================== */
-let bookType = () => {
+var bookType = () => {
   const bool = faker.random.boolean();
   if (bool) { return 'hardcover'; }
   return 'paperback';
@@ -14,7 +15,7 @@ let bookType = () => {
 
 /* =================== Page Number ===================== */
 
-let pageNum = () => {
+var pageNum = () => {
   let num = faker.random.number();
   //if page number is less than 10 or greater than 10,000
   while (num < 10 || num > 2000) {
@@ -25,7 +26,7 @@ let pageNum = () => {
 
 /* =================== First and Original Publication Dates ===================== */
 
-let dates = () => {
+var dates = () => {
   let dateObj = {
     firstPubDate: null,
     orgPubDate: null,
@@ -74,10 +75,44 @@ let dates = () => {
   dateObj.firstPubDate = firstPubDate.join(' ');
   dateObj.orgPubDate = orgPubDate.join(' ');
 
-  console.log(dateObj);
-
   return dates;
 };
 
-/* =================== Original Title ===================== */
+/* =================== ISBN generator ===================== */
+
+var ISBN = (limit) => {
+  let isbn = '';
+
+  //while isbn length is less than 11;
+  while (isbn.length < (limit + 1)) {
+    //add to isbn string;
+    let num = faker.random.number();
+    isbn += num.toString();
+  }
+  //splice isbn until 10th char
+  isbn = isbn.slice(0, limit);
+  return isbn;
+};
+
+/* =================== Language generator ===================== */
+
+var randLang = () => {
+  let languages = ['English', 'Korean', 'Spanish', 'Polish', 'Russian', 'Japanese', 'Italian', 'French', 'Chinese', 'Indian'];
+
+  var getRandomInt = (min, max) => {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min)) + min;
+  };
+  let randNum = getRandomInt(0, 10);
+
+
+  return languages[randNum];
+};
+
+/* =================== Character name ===================== */
+
+var randName = () => {
+  return faker.fake('{{name.firstName}} {{name.lastName}}');
+};
 
