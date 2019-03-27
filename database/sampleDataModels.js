@@ -116,3 +116,17 @@ var randName = () => {
   return faker.fake('{{name.firstName}} {{name.lastName}}');
 };
 
+/* =================== Award name and date ===================== */
+
+var randAward = () => {
+  let awardObj = {
+    name: '',
+    date: null
+  };
+  awardObj.name = faker.company.companyName() + ' Award';
+  awardObj.date = faker.date.past(5).getFullYear();
+
+  return awardObj;
+};
+
+
