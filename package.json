@@ -8,7 +8,7 @@
     "node": ">=6.13.0"
   },
   "scripts": {
-    "startDB": "nodemon --watch database"
+    "start": "nodemon server/index.js --watch "
   },
   "dependencies": {
     "bluebird": "^3.5.3",
