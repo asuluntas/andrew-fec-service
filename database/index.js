@@ -1,6 +1,6 @@
 const mysql = require('mysql');
 const Promise = require('bluebird');
-const {createTables, seedDb} = require('./seed');
+const {createTables, seedDb, seedAllData} = require('./seed');
 
 const connection = mysql.createConnection({
   user: 'root',
@@ -16,7 +16,7 @@ db.connectAsync()
   .then(() => db.queryAsync('CREATE DATABASE IF NOT EXISTS books'))
   .then(() => db.queryAsync('use books'))
   .then(() => createTables(db))
-  .then(() => seedDb(db))
+  .then(() => seedAllData(db))
   .error((err) => { console.log('error connecting to db', err); })
 
 
