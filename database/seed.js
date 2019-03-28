@@ -110,7 +110,7 @@ var seedDb = (db) => {
       let bookId = results[0].insertId;
       seedCharsTable(bookId, characters)
         .then(results => {
-          console.log(results);
+          console.log('seed Characters Table succeeded!', results);
         })
         .catch(err => console.log('err seeding chars table!', err));
       return bookId;
@@ -118,6 +118,12 @@ var seedDb = (db) => {
     //then seed the awards table with bookId
     .then((bookId) => {
       console.log(bookId);
+      seedAwardsTable(bookId, awards)
+        .then(results => {
+          console.log('seed Awards Table succeeeded!', results);
+        })
+        .catch(err => console.log('err seeding chars table!', err));
+      return bookId;
     });
 
 
