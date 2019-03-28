@@ -208,13 +208,14 @@ module.exports.coverUrl = coverUrl;
 /* =================== Editions Array ===================== */
 var editionsArr = () => {
   let editionsArr = [];
-  let num = getRandomInt(1, 11);
+  let num = getRandomInt(1, 8);
 
   while (num > 0) {
     let editionsObj = {
       isbn10: isbn(10),
       isbn13: isbn(13),
       type: type(),
+      publisher: publisher(),
       officialPubDate: dates().orgPubDate,
       coverUrl: coverUrl(),
       // can't actually access this status without logging in.
