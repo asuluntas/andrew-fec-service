@@ -16,7 +16,21 @@ db.connectAsync()
   .then(() => db.queryAsync('CREATE DATABASE IF NOT EXISTS books'))
   .then(() => db.queryAsync('use books'))
   .then(() => createTables(db))
-  .then(() => seedAllData(db))
+  .then(() => {
+    db.queryAsync('select count(id) from details')
+      .then(results => {
+        let dataCount = (results[0][0]['count(id)']);
+        return dataCount;
+      })
+      .then((dataCount) =>{
+        if (dataCount < 100) {
+          console.log('data set empty! seeding data!');
+          seedAllData(db);
+        }
+        console.log('data set already exists');
+      })
+      .catch((err) => console.log('err seeding db', err));
+  })
   .error((err) => { console.log('error connecting to db', err); })
 
 
