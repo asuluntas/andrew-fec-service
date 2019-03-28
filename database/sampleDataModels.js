@@ -1,17 +1,23 @@
 const faker = require('faker');
 
+//min inclusive, max exclusive
+
 var getRandomInt = (min, max) => {
   min = Math.ceil(min);
   max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 };
+module.exports.getRandomInt = getRandomInt;
 
 /* =================== Book Type ===================== */
-var bookType = () => {
-  const bool = faker.random.boolean();
-  if (bool) { return 'hardcover'; }
-  return 'paperback';
+
+var type = () => {
+  var num = getRandomInt(0, 4);
+  var typeArray = ['Hardcover', 'Paperback', 'Audio', 'Kindle'];
+
+  return typeArray[num];
 };
+module.exports.type = type;
 
 /* =================== Page Number ===================== */
 
@@ -23,6 +29,14 @@ var pageNum = () => {
   }
   return num;
 };
+module.exports.pageNum = pageNum;
+
+/* =================== Page Number ===================== */
+
+var publisher = () => {
+  return faker.company.companyName();
+};
+module.exports.publisher = publisher;
 
 /* =================== First and Original Publication Dates ===================== */
 
@@ -36,15 +50,11 @@ var dates = () => {
     let num = Number(string);
     //console.log(num)
     if (num === 1 || num === 21 || num === 31) {
-      console.log('hello');
       return string + 'st';
-
     } else if (num === 2 || num === 22) {
       return string + 'nd';
-
     } else if (num === 3 || num === 23) {
       return string + 'rd';
-
     }
     return string + 'th';
   };
@@ -77,10 +87,11 @@ var dates = () => {
 
   return dates;
 };
+module.exports.dates = dates;
 
 /* =================== ISBN generator ===================== */
 
-var ISBN = (limit) => {
+var isbn = (limit) => {
   let isbn = '';
 
   //while isbn length is less than 11;
@@ -93,10 +104,11 @@ var ISBN = (limit) => {
   isbn = isbn.slice(0, limit);
   return isbn;
 };
+module.exports.isbn = isbn;
 
 /* =================== Language generator ===================== */
 
-var randLang = () => {
+var language = () => {
   let languages = ['English', 'Korean', 'Spanish', 'Polish', 'Russian', 'Japanese', 'Italian', 'French', 'Chinese', 'Indian'];
 
   var getRandomInt = (min, max) => {
@@ -109,16 +121,18 @@ var randLang = () => {
 
   return languages[randNum];
 };
+module.exports.language = language;
 
 /* =================== Character name ===================== */
 
-var randName = () => {
+var characterName = () => {
   return faker.fake('{{name.firstName}} {{name.lastName}}');
 };
+module.exports.characterName = characterName;
 
 /* =================== Award name and date ===================== */
 
-var randAward = () => {
+var award = () => {
   let awardObj = {
     name: '',
     date: null
@@ -128,5 +142,24 @@ var randAward = () => {
 
   return awardObj;
 };
+module.exports.award = award;
 
+/* =================== Award name and date ===================== */
+var coverUrl = () => {
+  let urlStringArr = [
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic0.jpg',
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic1.jpg',
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic2.jpg',
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic3.jpg',
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic4.jpg',
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic5.jpg',
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic6.jpg',
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic7.jpg',
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic8.jpg',
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic9.jpg'
+  ];
+  let num = getRandomInt(0, 10);
+  return urlStringArr[num];
+};
+module.exports.coverUrl = coverUrl;
 
