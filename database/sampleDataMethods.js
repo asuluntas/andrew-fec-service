@@ -134,7 +134,7 @@ module.exports.language = language;
 var characterArr = () => {
   let charArr = [];
 
-  let num = getRandomInt(0, 10);
+  let num = getRandomInt(1, 10);
 
   while (num > 0) {
     let characterName = faker.fake('{{name.firstName}} {{name.lastName}}');
@@ -150,11 +150,17 @@ module.exports.characterArr = characterArr;
 
 var awardsArr = () => {
   let awardsArr = [];
-  let num = getRandomInt(0, 10);
+  let num = getRandomInt(1, 4);
+
+  let awards = [
+    'Specsavers National Book Awards', 'Man Booker Prize', 'Pulitzer Prize', 'Costa Book Awards', 'Neustadt International Prize for Literature', 'Hugo Award', 'Guardian First Book Award', 'National Book Award', 'Bailey\'s Women\'s Prize for Fiction', 'The John Newbery Medal', 'Edgar Awards', 'National Book Critics Circle Award'
+  ];
+
 
   while (num > 0) {
     let awardObj = {};
-    awardObj.name = faker.company.companyName() + ' Award';
+    let awardIndex = getRandomInt(0, 11);
+    awardObj.name = awards[awardIndex];
     awardObj.date = faker.date.past(5).getFullYear();
     awardsArr.push(awardObj);
     num--;
@@ -202,7 +208,7 @@ module.exports.coverUrl = coverUrl;
 /* =================== Editions Array ===================== */
 var editionsArr = () => {
   let editionsArr = [];
-  let num = getRandomInt(0, 10);
+  let num = getRandomInt(1, 11);
 
   while (num > 0) {
     let editionsObj = {
