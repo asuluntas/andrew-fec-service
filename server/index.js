@@ -17,7 +17,6 @@ app.get('/books/:id', (req, res) => {
 
 app.get('/books/:id/details', (req, res) => {
   const id = req.params.id;
-
   db.getDetails(id)
     .then(results => {
       let details = results[0][0];
@@ -27,8 +26,22 @@ app.get('/books/:id/details', (req, res) => {
       console.log(err);
       res.send(err);
     });
-
 });
+
+app.get('/books/:id/details/:table', (req, res) => {
+  const id = Number(req.params.id);
+  const table = req.params.table;
+  db.getRelatedData(table, id)
+    .then(results => {
+      let data = results[0];
+      res.send(data);
+    })
+    .catch(err => {
+      console.log('err getting extra details!', err);
+      res.send(err);
+    });
+});
+
 
 const PORT = 3001;
 app.listen(PORT, () => {

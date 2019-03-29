@@ -25,4 +25,13 @@ let getDetails = (id) => {
   return db.queryAsync(queryString, params);
 };
 
+let getRelatedData = (table, id) => {
+  let queryString = 'SELECT * FROM ?? WHERE bookId = ?';
+  console.log('=========== table ==========\n', table);
+  let params = [table, id];
+  return db.queryAsync(queryString, params);
+};
+
+
+module.exports.getRelatedData = getRelatedData;
 module.exports.getDetails = getDetails;
