@@ -8,6 +8,10 @@ const app = express();
 app.use(bodyParser.json());
 app.use(morgan('dev'));
 
+let staticPath = __dirname + '/../public';
+console.log(staticPath);
+app.use(express.static(staticPath));
+
 app.get('/books/:id', (req, res) => {
   const id = req.params.id;
   console.log(id);
@@ -29,7 +33,7 @@ app.get('/books/:id/details', (req, res) => {
 });
 
 app.get('/books/:id/details/:table', (req, res) => {
-  const id = Number(req.params.id);
+  const id = req.params.id;
   const table = req.params.table;
   db.getRelatedData(table, id)
     .then(results => {
@@ -42,6 +46,11 @@ app.get('/books/:id/details/:table', (req, res) => {
     });
 });
 
+app.post('/books/:id/details/editions/status', (req, res) => {
+  const id = req.params.id;
+  console.log('should redirect to login auth page! Just redirect to main for now');
+  res.redirect(`/books/${id}`);
+});
 
 const PORT = 3001;
 app.listen(PORT, () => {
