@@ -31,7 +31,7 @@ var pageNum = () => {
 };
 module.exports.pageNum = pageNum;
 
-/* =================== Page Number ===================== */
+/* =================== publisher ===================== */
 
 var publisher = () => {
   return faker.company.companyName();
