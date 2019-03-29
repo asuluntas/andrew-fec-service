@@ -11,9 +11,11 @@
     "start": "node server/index.js",
     "start:dev": "nodemon server/index.js",
     "seed": "mysql -u root < schema.sql && node database/seed.js",
-    "build:dev": "webpack -d --watch"
+    "build:dev": "webpack -d --watch",
+    "test": "jest /test"
   },
   "dependencies": {
+    "axios": "^0.18.0",
     "bluebird": "^3.5.3",
     "body-parser": "^1.18.3",
     "express": "^4.16.4",
@@ -26,6 +28,7 @@
     "@babel/core": "^7.4.0",
     "@babel/preset-env": "^7.4.2",
     "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
     "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^24.5.0",

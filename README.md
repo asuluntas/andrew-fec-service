@@ -9,3 +9,9 @@ To start server with nodemon use:
 
 To start server with node use:
 "npm run start"
+
+To start building .jsx files with webpack
+"npm run build:dev"
+
+To start testing
+"npm run test"
