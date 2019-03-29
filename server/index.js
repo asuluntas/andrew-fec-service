@@ -2,11 +2,21 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const db = require('../database');
 const morgan = require('morgan');
+const url = require('url');
 
 const app = express();
 const PORT = 3000;
 app.use(bodyParser.json());
 app.use(morgan('dev'));
+
+
+
+
+app.get('/book/:id', (req, res) => {
+  const id = req.params.id;
+  console.log(id);
+  console.log('hello');
+});
 
 
 

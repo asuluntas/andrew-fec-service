@@ -174,7 +174,7 @@ var seedAllData = (db) => {
     seedPromiseArray.push(seedDb(dataArray[i], db));
   }
 
-  Promise.all(seedPromiseArray).then((results) => console.log('======what are results??? =======\n', results));
+  Promise.all(seedPromiseArray);
 };
 
 //module.exports.seedDetailsTable = seedDetailsTable;

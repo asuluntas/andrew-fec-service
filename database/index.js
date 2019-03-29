@@ -26,8 +26,9 @@ db.connectAsync()
         if (dataCount < 100) {
           console.log('data set empty! seeding data!');
           seedAllData(db);
+        } else {
+          console.log('data set already exists');
         }
-        console.log('data set already exists');
       })
       .catch((err) => console.log('err seeding db', err));
   })
