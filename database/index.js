@@ -15,5 +15,14 @@ db.connectAsync()
   .then(() => console.log(`connected to mysql with id ${db.threadId}`))
   .error((err) => { console.log('error connecting to db', err); });
 
-
 module.exports = db;
+
+
+let getDetails = (id) => {
+  let queryString = 'SELECT * FROM details WHERE id = ?';
+  let params = [id];
+
+  return db.queryAsync(queryString, params);
+};
+
+module.exports.getDetails = getDetails;
