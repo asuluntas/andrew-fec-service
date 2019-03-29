@@ -9,7 +9,6 @@ app.use(bodyParser.json());
 app.use(morgan('dev'));
 
 let staticPath = __dirname + '/../public';
-console.log(staticPath);
 app.use('/books/:id', express.static(staticPath));
 
 // app.get('/books/:id', (req, res) => {
@@ -62,7 +61,4 @@ app.post('/books/:id/details/editions/rating', (req, res) => {
   res.redirect(`/books/${id}`);
 });
 
-const PORT = 3001;
-app.listen(PORT, () => {
-  console.log(`listening on port ${PORT}`);
-});
+module.exports = app
