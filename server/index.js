@@ -10,14 +10,14 @@ app.use(morgan('dev'));
 
 let staticPath = __dirname + '/../public';
 console.log(staticPath);
-app.use(express.static(staticPath));
+app.use('/books/:id', express.static(staticPath));
 
-app.get('/books/:id', (req, res) => {
-  const id = req.params.id;
-  console.log(id);
-  console.log('hello');
-  res.send('hello get book id');
-});
+// app.get('/books/:id', (req, res) => {
+//   const id = req.params.id;
+//   console.log(id);
+//   console.log('STATIC PAGE');
+//   res.send('hello get book id');
+// });
 
 app.get('/books/:id/details', (req, res) => {
   const id = req.params.id;
@@ -47,6 +47,12 @@ app.get('/books/:id/details/:table', (req, res) => {
 });
 
 app.post('/books/:id/details/editions/status', (req, res) => {
+  const id = req.params.id;
+  console.log('should redirect to login auth page! Just redirect to main for now');
+  res.redirect(`/books/${id}`);
+});
+
+app.post('/books/:id/details/editions/rating', (req, res) => {
   const id = req.params.id;
   console.log('should redirect to login auth page! Just redirect to main for now');
   res.redirect(`/books/${id}`);
