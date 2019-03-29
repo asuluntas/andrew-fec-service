@@ -1,6 +1,7 @@
 const {createData} = require('./sampleDataModel');
 const Promise = require('bluebird');
 
+//creates a data array for 100 BOOKS
 var createDataArray = () => {
   let dataArray = [];
   for (var i = 0; i < 100; i++) {
@@ -10,6 +11,7 @@ var createDataArray = () => {
   return dataArray;
 };
 
+//SEEDS ONE data object to database.
 var seedDb = (data, db) => {
 
   let details = data.mainDetails;
@@ -62,6 +64,7 @@ var seedDb = (data, db) => {
       })
       .catch(err => console.log('err seeding chars table!', err));
   };
+
   //editions table seeder function
   var seedEditionsTable = (bookId, editions) => {
     let editionsPromiseArr = [];
@@ -108,6 +111,7 @@ var seedDb = (data, db) => {
     .catch((err) => console.log('error in seedDb!\n', err));
 };
 
+//seed all 100 data objects to database!
 var seedAllData = (db) => {
   let dataArray = createDataArray();
   let seedPromiseArray = [];
@@ -119,7 +123,6 @@ var seedAllData = (db) => {
   Promise.all(seedPromiseArray);
 };
 
-//module.exports.seedDetailsTable = seedDetailsTable;
 module.exports.seedAllData = seedAllData;
 
 // Could use this instead of .sql -->

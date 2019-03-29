@@ -19,6 +19,7 @@ app.use('/books/:id', express.static(staticPath));
 //   res.send('hello get book id');
 // });
 
+//get initinal details
 app.get('/books/:id/details', (req, res) => {
   const id = req.params.id;
   db.getDetails(id)
@@ -32,6 +33,7 @@ app.get('/books/:id/details', (req, res) => {
     });
 });
 
+//get data from either characters, awards, or editions table depending on table variable.
 app.get('/books/:id/details/:table', (req, res) => {
   const id = req.params.id;
   const table = req.params.table;
@@ -46,12 +48,14 @@ app.get('/books/:id/details/:table', (req, res) => {
     });
 });
 
+//handle post request when status button of want to read changed
 app.post('/books/:id/details/editions/status', (req, res) => {
   const id = req.params.id;
   console.log('should redirect to login auth page! Just redirect to main for now');
   res.redirect(`/books/${id}`);
 });
 
+//handle post request when rating of book edition changed
 app.post('/books/:id/details/editions/rating', (req, res) => {
   const id = req.params.id;
   console.log('should redirect to login auth page! Just redirect to main for now');
