@@ -25,10 +25,6 @@ app.get('/books/:id/details', (req, res) => {
         res.send(details);
       }
     })
-    .catch(err => {
-      console.log('err getting table data!', err);
-      res.status(500).send(err);
-    });
 });
 
 //get data from either characters, awards, or editions table depending on table variable.
@@ -36,20 +32,22 @@ app.get('/books/:id/details/:table', (req, res) => {
   const id = req.params.id;
   const table = req.params.table;
 
-  db.getTableData(table, id)
-    .then(results => {
-      let data = results[0];
+  if (table === 'characters' || table === 'awards' || table === 'editions') {
+    db.getTableData(table, id)
+      .then(results => {
+        let data = results[0];
 
-      if (data.length === 0) {
-        res.status(404).send('no data @ specified id')
-      } else {
-        res.send(data);
-      }
-    })
-    .catch(err => {
-      console.log('err getting table data!', err);
-      res.status(500).send(err);
-    });
+        if (data.length === 0) {
+          res.status(404).send('no data @ specified id')
+        } else {
+          res.send(data);
+        }
+      })
+
+  } else {
+    res.status(400).send('endpoint does not exist');
+  }
+
 });
 
 //handle post request when status button of want to read changed
