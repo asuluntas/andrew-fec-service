@@ -11,7 +11,12 @@ db.queryAsync('use books')
       .then(async (dataCount) => {
         if (dataCount !== 100) {
           console.log('data set empty! seeding data!');
-          seedAllData(db);
+          return seedAllData(db)
+            // .then(()=> {
+            //   db.end(()=> {
+            //     console.log('connection closed!')
+            //   })
+            // })
         } else {
           console.log('data set already exists');
         }

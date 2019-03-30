@@ -14,8 +14,6 @@ var createDataArray = () => {
 //SEEDS ONE data object to database.
 var seedDb = (data, db) => {
 
-
-
   let details = data.mainDetails;
   let characters = data.characters;
   let awards = data.litAwards;
@@ -43,9 +41,10 @@ var seedDb = (data, db) => {
       charsPromiseArr.push(db.queryAsync(queryString, params));
     }
 
-    Promise.all(charsPromiseArr)
+    return Promise.all(charsPromiseArr)
       .then(results => {
         console.log('seed characters table succeeded!', bookId);
+        return bookId;
       })
       .catch(err => console.log('err seeding chars table!', err));
   };
@@ -64,9 +63,10 @@ var seedDb = (data, db) => {
       awardsPromiseArr.push(db.queryAsync(queryString, params));
     }
 
-    Promise.all(awardsPromiseArr)
+    return Promise.all(awardsPromiseArr)
       .then(results => {
         console.log('seed awards table succeeded!', bookId);
+        return bookId
       })
       .catch(err => console.log('err seeding chars table!', err));
   };
@@ -84,16 +84,17 @@ var seedDb = (data, db) => {
       editionsPromiseArr.push(db.queryAsync(queryString, params));
     }
 
-    Promise.all(editionsPromiseArr)
+    return Promise.all(editionsPromiseArr)
       .then(results => {
         console.log('seed editions table succeeded!', bookId);
+        return bookId
       })
       .catch(err => console.log('err seeding editions table!', err));
   };
 
   //===================Seed tables======================!
   //start by seeding details Table
-  seedDetailsTable(details)
+  return seedDetailsTable(details)
     //define book id
     .then(results => {
       let bookId = results[0].insertId;
@@ -102,9 +103,15 @@ var seedDb = (data, db) => {
     })
     //then seed the characters table with bookId
     .then((bookId) => {
-        seedCharsTable(bookId, characters)
-        seedAwardsTable(bookId, awards)
-        seedEditionsTable(bookId, editions)
+      let array = [seedCharsTable(bookId, characters), seedAwardsTable(bookId, awards), seedEditionsTable(bookId, editions)]
+        // seedCharsTable(bookId, characters)
+        // seedAwardsTable(bookId, awards)
+        // seedEditionsTable(bookId, editions)
+      return Promise.all(array)
+        // .then(results => {
+        //   console.log(results);
+        //   return results
+        // });
     })
     .catch((err) => {
       console.log('error in seedDb!\n', err)
@@ -116,66 +123,21 @@ var seedDb = (data, db) => {
 //seed all 100 data objects to database!
 var seedAllData = (db) => {
   let dataArray = createDataArray();
-  let array = [];
+  let promiseArray = [];
 
   for (var i = 0; i < dataArray.length; i++) {
-    seedDb(dataArray[i], db)
+    promiseArray.push(seedDb(dataArray[i], db));
   }
+
+  Promise.all(promiseArray)
+    .then((results) => {
+      console.log('-----results-----\n', results);
+      db.end(() => {
+        console.log('end connection after seed!')
+      })
+    })
+
 };
 
 module.exports.seedAllData = seedAllData;
 
-// Could use this instead of .sql -->
-// var createTables = (db) => {
-
-//   return db.queryAsync(`
-//     CREATE TABLE IF NOT EXISTS details (
-//       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//       type VARCHAR(20),
-//       pagenum INT,
-//       publisher VARCHAR(100),
-//       firstPubDate VARCHAR(30),
-//       originalPubDate VARCHAR(30),
-//       title VARCHAR(100),
-//       isbn10 VARCHAR(20),
-//       isbn13 VARCHAR(20),
-//       language VARCHAR(20)
-//       );`
-//   )
-//     .then(()=> {
-//       return db.queryAsync(`
-//         CREATE TABLE IF NOT EXISTS characters (
-//           id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//           name VARCHAR(100),
-//           bookId INT
-//         );`
-//       );
-//     })
-//     .then(() => {
-//       return db.queryAsync(`
-//         CREATE TABLE IF NOT EXISTS awards (
-//           id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//           name VARCHAR(100),
-//           year INT,
-//           bookId INT
-//         );`
-//       );
-//     })
-//     .then(() => {
-//       return db.queryAsync(`
-//         CREATE TABLE IF NOT EXISTS editions (
-//           id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-//           isbn10 VARCHAR(20),
-//           isbn13 VARCHAR(20),
-//           type VARCHAR(20),
-//           publisher VARCHAR(100),
-//           originalPubDate VARCHAR(30),
-//           coverurl VARCHAR(250),
-//           bookId INT
-//         );`
-//       );
-//     })
-//     .error((err) => {
-//       console.log('error making tables', err);
-//     });
-// };
