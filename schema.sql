@@ -32,6 +32,7 @@ CREATE TABLE IF NOT EXISTS editions (
   id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
   isbn10 VARCHAR(20),
   isbn13 VARCHAR(20),
+  title VARCHAR(100),
   type VARCHAR(20),
   publisher VARCHAR(100),
   originalPubDate VARCHAR(30),

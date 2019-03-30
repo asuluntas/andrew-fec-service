@@ -10,9 +10,11 @@
   "scripts": {
     "start": "node server/server.js",
     "start:dev": "nodemon server/server.js",
+    "drop:tables": "node database/dropTables.js",
     "seed": "mysql -u root < schema.sql && node database/seed.js",
     "build:dev": "webpack -d --watch",
     "test": "jest /test"
+
   },
   "dependencies": {
     "axios": "^0.18.0",

@@ -77,9 +77,9 @@ var seedDb = (data, db) => {
     let editionsPromiseArr = [];
 
     for (var i = 0; i < editions.length; i++) {
-      let {isbn10, isbn13, type, publisher, officialPubDate, coverUrl} = editions[i];
-      let queryString = 'INSERT INTO editions (isbn10, isbn13, type, publisher, originalPubDate, coverurl, bookId) values (?, ?, ?, ?, ?, ?, ?);';
-      let params = [isbn10, isbn13, type, publisher, officialPubDate, coverUrl, bookId];
+      let {isbn10, isbn13, title, type, publisher, officialPubDate, coverUrl} = editions[i];
+      let queryString = 'INSERT INTO editions (isbn10, isbn13, title, type, publisher, originalPubDate, coverurl, bookId) values (?, ?, ?, ?, ?, ?, ?, ?);';
+      let params = [isbn10, isbn13, title, type, publisher, officialPubDate, coverUrl, bookId];
 
       editionsPromiseArr.push(db.queryAsync(queryString, params));
     }

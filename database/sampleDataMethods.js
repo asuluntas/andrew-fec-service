@@ -214,6 +214,7 @@ var editionsArr = () => {
     let editionsObj = {
       isbn10: isbn(10),
       isbn13: isbn(13),
+      title: title(),
       type: type(),
       publisher: publisher(),
       officialPubDate: dates().orgPubDate,
