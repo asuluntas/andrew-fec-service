@@ -8,7 +8,7 @@ db.queryAsync('use books')
         let dataCount = (results[0][0]['count(id)']);
         return dataCount;
       })
-      .then((dataCount) => {
+      .then(async (dataCount) => {
         if (dataCount !== 100) {
           console.log('data set empty! seeding data!');
           seedAllData(db);

@@ -27,7 +27,6 @@ let getDetails = (id) => {
 
 let getRelatedData = (table, id) => {
   let queryString = 'SELECT * FROM ?? WHERE bookId = ?';
-  console.log('=========== table ==========\n', table);
   let params = [table, id];
   return db.queryAsync(queryString, params);
 };

@@ -14,6 +14,8 @@ var createDataArray = () => {
 //SEEDS ONE data object to database.
 var seedDb = (data, db) => {
 
+
+
   let details = data.mainDetails;
   let characters = data.characters;
   let awards = data.litAwards;
@@ -22,6 +24,7 @@ var seedDb = (data, db) => {
   //details Table Seeder Function
   var seedDetailsTable = (details) => {
     let { type, pageNum, publisher, title, dates, isbn10, isbn13, language } = details;
+
     let queryString = 'INSERT INTO details (type, pagenum, publisher, firstPubDate, originalPubDate, title, isbn10, isbn13, language) values (?, ?, ?, ?, ?, ?, ?, ?, ?);';
     let params = [type, pageNum, publisher, dates.firstPubDate, dates.orgPubDate, title, isbn10, isbn13, language];
 
@@ -30,6 +33,7 @@ var seedDb = (data, db) => {
 
   //chars table seeder function
   var seedCharsTable = (bookId, chars) => {
+
     let charsPromiseArr = [];
 
     for (var i = 0; i < chars.length; i++) {
@@ -38,6 +42,7 @@ var seedDb = (data, db) => {
 
       charsPromiseArr.push(db.queryAsync(queryString, params));
     }
+
     Promise.all(charsPromiseArr)
       .then(results => {
         console.log('seed characters table succeeded!', bookId);
@@ -47,6 +52,7 @@ var seedDb = (data, db) => {
 
   //awards table seeder function
   var seedAwardsTable = (bookId, awards) => {
+
     let awardsPromiseArr = [];
 
     for (var i = 0; i < awards.length; i++) {
@@ -67,6 +73,7 @@ var seedDb = (data, db) => {
 
   //editions table seeder function
   var seedEditionsTable = (bookId, editions) => {
+
     let editionsPromiseArr = [];
 
     for (var i = 0; i < editions.length; i++) {
@@ -76,6 +83,7 @@ var seedDb = (data, db) => {
 
       editionsPromiseArr.push(db.queryAsync(queryString, params));
     }
+
     Promise.all(editionsPromiseArr)
       .then(results => {
         console.log('seed editions table succeeded!', bookId);
@@ -90,37 +98,29 @@ var seedDb = (data, db) => {
     .then(results => {
       let bookId = results[0].insertId;
       console.log('seed details Table succeeded!', bookId);
-      //console.log(bookId);
       return bookId;
     })
     //then seed the characters table with bookId
     .then((bookId) => {
-      seedCharsTable(bookId, characters);
-      return bookId;
+        seedCharsTable(bookId, characters)
+        seedAwardsTable(bookId, awards)
+        seedEditionsTable(bookId, editions)
     })
-    //then seed the awards table with bookId
-    .then((bookId) => {
-      //console.log(bookId);
-      seedAwardsTable(bookId, awards)
-      return bookId;
-    })
-    //then seed the editions table with bookId
-    .then((bookId) => {
-      return seedEditionsTable(bookId, editions);
-    })
-    .catch((err) => console.log('error in seedDb!\n', err));
+    .catch((err) => {
+      console.log('error in seedDb!\n', err)
+      reject(err);
+    });
+
 };
 
 //seed all 100 data objects to database!
 var seedAllData = (db) => {
   let dataArray = createDataArray();
-  let seedPromiseArray = [];
+  let array = [];
 
   for (var i = 0; i < dataArray.length; i++) {
-    seedPromiseArray.push(seedDb(dataArray[i], db));
+    seedDb(dataArray[i], db)
   }
-
-  Promise.all(seedPromiseArray);
 };
 
 module.exports.seedAllData = seedAllData;
