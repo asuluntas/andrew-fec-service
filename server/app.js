@@ -11,13 +11,6 @@ app.use(morgan('dev'));
 let staticPath = __dirname + '/../public';
 app.use('/books/:id', express.static(staticPath));
 
-// app.get('/books/:id', (req, res) => {
-//   const id = req.params.id;
-//   console.log(id);
-//   console.log('STATIC PAGE');
-//   res.send('hello get book id');
-// });
-
 //get initinal details
 app.get('/books/:id/details', (req, res) => {
   const id = req.params.id;
