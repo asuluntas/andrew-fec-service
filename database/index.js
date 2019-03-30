@@ -25,12 +25,12 @@ let getDetails = (id) => {
   return db.queryAsync(queryString, params);
 };
 
-let getRelatedData = (table, id) => {
+let getTableData = (table, id) => {
   let queryString = 'SELECT * FROM ?? WHERE bookId = ?';
   let params = [table, id];
   return db.queryAsync(queryString, params);
 };
 
 
-module.exports.getRelatedData = getRelatedData;
+module.exports.getTableData = getTableData;
 module.exports.getDetails = getDetails;
