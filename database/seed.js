@@ -69,6 +69,16 @@ var setupDb = () => {
     })
     .then(() => {
       return db.queryAsync(`
+        CREATE TABLE IF NOT EXISTS settings (
+          id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+          city VARCHAR(150),
+          country VARCHAR(150),
+          bookId INT
+        );`
+      );
+    })
+    .then(() => {
+      return db.queryAsync(`
         CREATE TABLE IF NOT EXISTS awards (
           id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
           name VARCHAR(100),

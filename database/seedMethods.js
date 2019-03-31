@@ -16,6 +16,7 @@ var seedDb = (data, db) => {
 
   let details = data.mainDetails;
   let characters = data.characters;
+  let settings = data.settings;
   let awards = data.litAwards;
   let editions = data.editions;
 
@@ -47,6 +48,28 @@ var seedDb = (data, db) => {
         return bookId;
       })
       .catch(err => console.log('err seeding chars table!', err));
+  };
+
+  //settings table seeder function
+  var seedSettingsTable = (bookId, settings) => {
+
+    let settingsPromiseArr = [];
+
+    for (var i = 0; i < settings.length; i++) {
+      let city = settings[i].city;
+      let country = settings[i].country;
+      let queryString = 'INSERT INTO settings (city, country, bookId) values (?, ?, ?);';
+      let params = [city, country, bookId];
+
+      settingsPromiseArr.push(db.queryAsync(queryString, params));
+    }
+
+    return Promise.all(settingsPromiseArr)
+      .then(results => {
+        console.log('seed settings table succeeded!', bookId);
+        return bookId;
+      })
+      .catch(err => console.log('err seeding settings table!', err));
   };
 
   //awards table seeder function
@@ -103,10 +126,8 @@ var seedDb = (data, db) => {
     })
     //then seed the characters table with bookId
     .then((bookId) => {
-      let array = [seedCharsTable(bookId, characters), seedAwardsTable(bookId, awards), seedEditionsTable(bookId, editions)]
-        // seedCharsTable(bookId, characters)
-        // seedAwardsTable(bookId, awards)
-        // seedEditionsTable(bookId, editions)
+      let array = [seedCharsTable(bookId, characters), seedAwardsTable(bookId, awards), seedEditionsTable(bookId, editions), seedSettingsTable(bookId, settings)]
+
       return Promise.all(array)
         // .then(results => {
         //   console.log(results);
