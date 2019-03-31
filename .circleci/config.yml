@@ -4,6 +4,11 @@ jobs:
     working_directory: ~/fec-starter
     docker:
       - image: circleci/node:10
+      - image: mysql:5.7
+        environment:
+            MYSQL_ALLOW_EMPTY_PASSWORD: yes
+            MYSQL_ROOT_PASSWORD: ''
+            MYSQL_DATABASE: circleci
     steps:
       - checkout
       - restore_cache:
@@ -17,6 +22,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
+            
       - run:
           name: tests
           command: npm test
