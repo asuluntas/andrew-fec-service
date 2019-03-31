@@ -230,5 +230,26 @@ var editionsArr = () => {
   }
   return editionsArr;
 };
+
 module.exports.editionsArr = editionsArr;
 
+/* =================== Settings Array ===================== */
+
+var settingsArr = () => {
+
+  var location = () => {
+    let city = faker.address.city()
+    let country = faker.address.country()
+    return { city: city, country: country };
+  }
+
+  let settingsArr = [];
+  let num = getRandomInt(1, 6)
+
+  for (var i = 0 ; i < num ; i++) {
+    settingsArr.push(location());
+  }
+
+  return settingsArr;
+}
+module.exports.settingsArr = settingsArr;

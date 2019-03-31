@@ -1,4 +1,4 @@
-var { type, pageNum, publisher, dates, title, isbn, language, characterArr, awardsArr, editionsArr } = require('./sampleDataMethods.js');
+var { type, pageNum, publisher, dates, title, isbn, language, characterArr, awardsArr, editionsArr, settingsArr } = require('./sampleDataMethods.js');
 
 var createData = () => {
   var dataObj = {
@@ -13,6 +13,7 @@ var createData = () => {
       language: language(),
     },
     characters: characterArr(),
+    settings: settingsArr(),
     litAwards: awardsArr(),
     editions: editionsArr(),
   };
@@ -21,3 +22,5 @@ var createData = () => {
 
 
 module.exports.createData = createData;
+
+console.log(createData())
