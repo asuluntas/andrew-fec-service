@@ -12,10 +12,6 @@ jobs:
     steps:
       - checkout
 
-      - run:
-          name: install mysql-cli
-          command: sudo apt install -y mysql-client
-
       - restore_cache:
           key: dependency-cache-{{ checksum "package.json" }}
 
