@@ -8,7 +8,7 @@ jobs:
         environment:
             MYSQL_ALLOW_EMPTY_PASSWORD: yes
             MYSQL_ROOT_PASSWORD: ''
-            MYSQL_DATABASE: circleci
+            MYSQL_DATABASE: books
     steps:
       - checkout
       - restore_cache:
@@ -22,7 +22,7 @@ jobs:
           key: dependency-cache-{{ checksum "package.json" }}
           paths:
             - ./node_modules
-            
+
       - run:
           name: tests
           command: npm test
