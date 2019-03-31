@@ -110,7 +110,6 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
         done();
       });
     });
-
   });
 
   //==========================================================
@@ -151,5 +150,41 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
       });
     });
   });
+
+  //==========================================================
+
+  describe('Test response for endpoint /books/:id/details/settings', () => {
+
+    test('It should give correct status code response to GET settings table', (done) => {
+      request(app).get(`/books/${randomInt}}/details/settings`).then((response) => {
+        expect(response.statusCode).toBe(200);
+        done();
+      });
+    });
+
+    test('It should give error response when id does not exist', (done) => {
+      request(app).get(`/books/${randomInt + 100}}/details/settings`).then((response) => {
+        expect(response.statusCode).toBe(404);
+        done();
+      });
+    });
+
+    test('It should give back body obj corresponding to right id with correct format', (done) => {
+      let num = randomInt;
+      request(app).get(`/books/${num}}/details/settings`).then((response) => {
+        response.body.forEach((edition) => {
+          expect(edition).toEqual(expect.objectContaining({
+            id: expect.any(Number),
+            city: expect.any(String),
+            country: expect.any(String),
+            bookId: num
+          }));
+        })
+        done();
+      });
+    });
+  });
+
 });
+
 

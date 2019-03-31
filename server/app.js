@@ -19,7 +19,7 @@ app.get('/books/:id/details', (req, res) => {
     .then(results => {
       let details = results[0][0];
 
-      if (details === undefined) {
+      if (!details) {
         res.status(404).send('no data @ specified id')
       } else {
         res.send(details);
@@ -32,7 +32,7 @@ app.get('/books/:id/details/:table', (req, res) => {
   const id = req.params.id;
   const table = req.params.table;
 
-  if (table === 'characters' || table === 'awards' || table === 'editions') {
+  if (table === 'characters' || table === 'awards' || table === 'editions' || table === 'settings') {
     db.getTableData(table, id)
       .then(results => {
         let data = results[0];
