@@ -1,7 +1,26 @@
-const db = require('./index');
+const mysql = require('mysql');
+const Promise = require('bluebird');
 const { seedAllData } = require('./seedMethods');
 
-db.queryAsync('use books')
+
+const connection = mysql.createConnection({
+  user: 'root',
+  host: 'localhost',
+});
+
+const db = Promise.promisifyAll(connection, { multiArgs: true });
+
+db.connectAsync()
+  .then(() => console.log(`connected to mysql with id ${db.threadId}`))
+  .error((err) => { console.log('error connecting to db', err); });
+
+db.queryAsync('CREATE DATABASE IF NOT EXISTS books')
+  .then(()=> {
+    return db.queryAsync('use books')
+  })
+  .then(()=> {
+    return setupDb();
+  })
   .then(() => {
     db.queryAsync('select count(id) from details')
       .then(results => {
@@ -12,19 +31,18 @@ db.queryAsync('use books')
         if (dataCount !== 100) {
           console.log('data set empty! seeding data!');
           return seedAllData(db)
-            // .then(()=> {
-            //   db.end(()=> {
-            //     console.log('connection closed!')
-            //   })
-            // })
         } else {
           console.log('data set already exists');
         }
       })
       .catch((err) => console.log('err seeding db', err));
-  });
+  })
+  .catch(() => {
+    console.log('DAMN!')
+  })
 
-var createTables = (db) => {
+
+var setupDb = () => {
 
   return db.queryAsync(`
     CREATE TABLE IF NOT EXISTS details (
@@ -65,6 +83,7 @@ var createTables = (db) => {
           id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
           isbn10 VARCHAR(20),
           isbn13 VARCHAR(20),
+          title VARCHAR(100),
           type VARCHAR(20),
           publisher VARCHAR(100),
           originalPubDate VARCHAR(30),
@@ -76,5 +95,6 @@ var createTables = (db) => {
     .error((err) => {
       console.log('error making tables', err);
     });
-
 };
+
+
