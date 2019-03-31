@@ -14,7 +14,6 @@
     "seed": "node database/seed.js",
     "build:dev": "webpack -d --watch",
     "test": "jest /test"
-
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -32,7 +31,6 @@
     "@babel/preset-react": "^7.0.0",
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor",
     "jest": "^24.5.0",
     "supertest": "^4.0.2",
     "webpack": "^4.29.6",
