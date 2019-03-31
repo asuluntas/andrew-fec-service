@@ -24,5 +24,9 @@ jobs:
             - ./node_modules
 
       - run:
+          name: seed db
+          command: npm run seed
+
+      - run:
           name: tests
           command: npm test
