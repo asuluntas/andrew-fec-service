@@ -1,152 +1,145 @@
-const {createData} = require('./sampleDataModel');
-const Promise = require('bluebird');
+/* eslint-disable object-curly-newline */
+/* eslint-disable no-shadow */
 
-//creates a data array for 100 BOOKS
-var createDataArray = () => {
-  let dataArray = [];
-  for (var i = 0; i < 100; i++) {
-    var data = createData();
+const Promise = require('bluebird');
+const { createData } = require('./sampleDataModel');
+
+// creates a data array for 100 BOOKS
+
+const createDataArray = () => {
+  const dataArray = [];
+  for (let i = 0; i < 100; i += 1) {
+    const data = createData();
     dataArray.push(data);
   }
   return dataArray;
 };
 
-//SEEDS ONE data object to database.
-var seedDb = (data, db) => {
+// SEEDS ONE data object to database.
+const seedDb = (data, db) => {
+  const details = data.mainDetails;
+  const { characters } = data;
+  const { settings } = data;
+  const awards = data.litAwards;
+  const { editions } = data;
 
-  let details = data.mainDetails;
-  let characters = data.characters;
-  let settings = data.settings;
-  let awards = data.litAwards;
-  let editions = data.editions;
+  // details Table Seeder Function
+  const seedDetailsTable = (details) => {
+    const { type, pageNum, publisher, title, dates, isbn10, isbn13, language } = details;
 
-  //details Table Seeder Function
-  var seedDetailsTable = (details) => {
-    let { type, pageNum, publisher, title, dates, isbn10, isbn13, language } = details;
-
-    let queryString = 'INSERT INTO details (type, pagenum, publisher, firstPubDate, originalPubDate, title, isbn10, isbn13, language) values (?, ?, ?, ?, ?, ?, ?, ?, ?);';
-    let params = [type, pageNum, publisher, dates.firstPubDate, dates.orgPubDate, title, isbn10, isbn13, language];
+    const queryString = 'INSERT INTO details (type, pagenum, publisher, firstPubDate, originalPubDate, title, isbn10, isbn13, language) values (?, ?, ?, ?, ?, ?, ?, ?, ?);';
+    const params = [type, pageNum, publisher, dates.firstPubDate, dates.orgPubDate, title, isbn10, isbn13, language];
 
     return db.queryAsync(queryString, params);
   };
 
-  //chars table seeder function
-  var seedCharsTable = (bookId, chars) => {
+  // chars table seeder function
+  const seedCharsTable = (bookId, chars) => {
+    const charsPromiseArr = [];
 
-    let charsPromiseArr = [];
-
-    for (var i = 0; i < chars.length; i++) {
-      let queryString = 'INSERT INTO characters (name, bookId) values (?, ?);';
-      let params = [chars[i], bookId];
+    for (let i = 0; i < chars.length; i += 1) {
+      const queryString = 'INSERT INTO characters (name, bookId) values (?, ?);';
+      const params = [chars[i], bookId];
 
       charsPromiseArr.push(db.queryAsync(queryString, params));
     }
 
     return Promise.all(charsPromiseArr)
-      .then(results => {
+      .then(() => {
         console.log('seed characters table succeeded!', bookId);
         return bookId;
       })
       .catch(err => console.log('err seeding chars table!', err));
   };
 
-  //settings table seeder function
-  var seedSettingsTable = (bookId, settings) => {
+  // settings table seeder function
+  const seedSettingsTable = (bookId, settings) => {
+    const settingsPromiseArr = [];
 
-    let settingsPromiseArr = [];
-
-    for (var i = 0; i < settings.length; i++) {
-      let city = settings[i].city;
-      let country = settings[i].country;
-      let queryString = 'INSERT INTO settings (city, country, bookId) values (?, ?, ?);';
-      let params = [city, country, bookId];
+    for (let i = 0; i < settings.length; i += 1) {
+      const { city } = settings[i];
+      const { country } = settings[i];
+      const queryString = 'INSERT INTO settings (city, country, bookId) values (?, ?, ?);';
+      const params = [city, country, bookId];
 
       settingsPromiseArr.push(db.queryAsync(queryString, params));
     }
 
     return Promise.all(settingsPromiseArr)
-      .then(results => {
+      .then(() => {
         console.log('seed settings table succeeded!', bookId);
         return bookId;
       })
       .catch(err => console.log('err seeding settings table!', err));
   };
 
-  //awards table seeder function
-  var seedAwardsTable = (bookId, awards) => {
+  // awards table seeder function
+  const seedAwardsTable = (bookId, awards) => {
+    const awardsPromiseArr = [];
 
-    let awardsPromiseArr = [];
-
-    for (var i = 0; i < awards.length; i++) {
-      let name = awards[i].name;
-      let date = awards[i].date;
-      let queryString = 'INSERT INTO awards (name, year, bookId) values (?, ?, ?);';
-      let params = [name, date, bookId];
+    for (let i = 0; i < awards.length; i += 1) {
+      const { name } = awards[i];
+      const { date } = awards[i];
+      const queryString = 'INSERT INTO awards (name, year, bookId) values (?, ?, ?);';
+      const params = [name, date, bookId];
 
       awardsPromiseArr.push(db.queryAsync(queryString, params));
     }
 
     return Promise.all(awardsPromiseArr)
-      .then(results => {
+      .then(() => {
         console.log('seed awards table succeeded!', bookId);
-        return bookId
+        return bookId;
       })
       .catch(err => console.log('err seeding chars table!', err));
   };
 
-  //editions table seeder function
-  var seedEditionsTable = (bookId, editions) => {
+  // editions table seeder function
+  const seedEditionsTable = (bookId, editions) => {
+    const editionsPromiseArr = [];
 
-    let editionsPromiseArr = [];
-
-    for (var i = 0; i < editions.length; i++) {
-      let {isbn10, isbn13, title, type, publisher, officialPubDate, coverUrl} = editions[i];
-      let queryString = 'INSERT INTO editions (isbn10, isbn13, title, type, publisher, originalPubDate, coverurl, bookId) values (?, ?, ?, ?, ?, ?, ?, ?);';
-      let params = [isbn10, isbn13, title, type, publisher, officialPubDate, coverUrl, bookId];
+    for (let i = 0; i < editions.length; i += 1) {
+      const { isbn10, isbn13, title, type, publisher, officialPubDate, coverUrl } = editions[i];
+      const queryString = 'INSERT INTO editions (isbn10, isbn13, title, type, publisher, originalPubDate, coverurl, bookId) values (?, ?, ?, ?, ?, ?, ?, ?);';
+      const params = [isbn10, isbn13, title, type, publisher, officialPubDate, coverUrl, bookId];
 
       editionsPromiseArr.push(db.queryAsync(queryString, params));
     }
 
     return Promise.all(editionsPromiseArr)
-      .then(results => {
+      .then(() => {
         console.log('seed editions table succeeded!', bookId);
-        return bookId
+        return bookId;
       })
       .catch(err => console.log('err seeding editions table!', err));
   };
 
-  //===================Seed tables======================!
-  //start by seeding details Table
+  //= ==================Seed tables======================!
+  // start by seeding details Table
   return seedDetailsTable(details)
-    //define book id
-    .then(results => {
-      let bookId = results[0].insertId;
+    // define book id
+    .then((results) => {
+      const bookId = results[0].insertId;
       console.log('seed details Table succeeded!', bookId);
       return bookId;
     })
-    //then seed the characters table with bookId
+    // then seed the characters table with bookId
     .then((bookId) => {
-      let array = [seedCharsTable(bookId, characters), seedAwardsTable(bookId, awards), seedEditionsTable(bookId, editions), seedSettingsTable(bookId, settings)]
+      const array = [seedCharsTable(bookId, characters), seedAwardsTable(bookId, awards), seedEditionsTable(bookId, editions), seedSettingsTable(bookId, settings)];
 
-      return Promise.all(array)
-        // .then(results => {
-        //   console.log(results);
-        //   return results
-        // });
+      return Promise.all(array);
     })
     .catch((err) => {
-      console.log('error in seedDb!\n', err)
-      reject(err);
+      console.log('error in seedDb!\n', err);
     });
-
 };
 
-//seed all 100 data objects to database!
-var seedAllData = (db) => {
-  let dataArray = createDataArray();
-  let promiseArray = [];
+// seed all 100 data objects to database!
+const seedAllData = (db) => {
+  const dataArray = createDataArray();
+  const promiseArray = [];
 
-  for (var i = 0; i < dataArray.length; i++) {
+  for (let i = 0; i < dataArray.length; i += 1) {
     promiseArray.push(seedDb(dataArray[i], db));
   }
 
@@ -154,11 +147,9 @@ var seedAllData = (db) => {
     .then((results) => {
       console.log('-----results-----\n', results);
       db.end(() => {
-        console.log('end connection after seed!')
-      })
-    })
-
+        console.log('end connection after seed!');
+      });
+    });
 };
 
 module.exports.seedAllData = seedAllData;
-

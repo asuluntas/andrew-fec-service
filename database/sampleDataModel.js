@@ -1,7 +1,9 @@
-var { type, pageNum, publisher, dates, title, isbn, language, characterArr, awardsArr, editionsArr, settingsArr } = require('./sampleDataMethods.js');
+const {
+  type, pageNum, publisher, dates, title, isbn, language, characterArr, awardsArr, editionsArr, settingsArr,
+} = require('./sampleDataMethods.js');
 
-var createData = () => {
-  var dataObj = {
+const createData = () => {
+  const dataObj = {
     mainDetails: {
       type: type(),
       pageNum: pageNum(),
@@ -23,4 +25,4 @@ var createData = () => {
 
 module.exports.createData = createData;
 
-console.log(createData())
+console.log(createData());

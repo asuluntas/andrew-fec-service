@@ -1,24 +1,25 @@
+/* eslint-disable arrow-body-style */
 const db = require('./index');
-//use npm run drop:tables to drop all tables
+// use npm run drop:tables to drop all tables
 
 db.queryAsync('use books')
   .then(() => {
-    return db.queryAsync('drop tables details')
+    return db.queryAsync('drop tables details');
   })
   .then(() => {
-    return db.queryAsync('drop table characters')
+    return db.queryAsync('drop table characters');
   })
   .then(() => {
-    return db.queryAsync('drop table awards')
+    return db.queryAsync('drop table awards');
   })
   .then(() => {
-    return db.queryAsync('drop table editions')
+    return db.queryAsync('drop table editions');
   })
   .then(() => {
-    db.end(()=> {
-      console.log('db connection closed after dropping tables')
-    })
+    db.end(() => {
+      console.log('db connection closed after dropping tables');
+    });
   })
-  .catch(() => {
-    console.log('err dropping tables', err)
+  .catch((err) => {
+    console.log('err dropping tables', err);
   });

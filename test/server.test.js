@@ -1,5 +1,6 @@
-const app = require('../server/app');
+/* eslint-disable no-undef */
 const request = require('supertest');
+const app = require('../server/app');
 const db = require('../database/index');
 
 describe('Test endpoint GET /books/:id/details', () => {
@@ -13,7 +14,7 @@ describe('Test endpoint GET /books/:id/details', () => {
   });
 
   test('It should give back body corresponding to right id', (done) => {
-    let num = randomInt;
+    const num = randomInt;
     request(app).get(`/books/${num}}/details`).then((response) => {
       expect(response.body.id).toBe(num);
       done();
@@ -31,7 +32,7 @@ describe('Test endpoint GET /books/:id/details', () => {
         title: expect.any(String),
         isbn10: expect.any(String),
         isbn13: expect.any(String),
-        language: expect.any(String)
+        language: expect.any(String),
       }));
       done();
     });
@@ -46,7 +47,7 @@ describe('Test endpoint GET /books/:id/details', () => {
 
 });
 
-//**********************************************************
+//  **********************************************************
 
 describe('Test endpoint GET /books/:id/details/:table', () => {
 
@@ -70,7 +71,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
     });
 
     test('It should give back body obj corresponding to right id with correct format', (done) => {
-      let num = randomInt;
+      const num = randomInt;
       request(app).get(`/books/${num}}/details/characters`).then((response) => {
         response.body.forEach((char) => {
           expect(char.bookId).toBe(num);
@@ -82,7 +83,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
 
   });
 
-  //==========================================================
+  //  ==========================================================
 
   describe('Test response for endpoint /books/:id/details/awards', () => {
     test('It should give correct status code response to GET awards table', (done) => {
@@ -100,7 +101,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
     });
 
     test('It should give back body obj corresponding to right id with correct format', (done) => {
-      let num = randomInt;
+      const num = randomInt;
       request(app).get(`/books/${num}}/details/awards`).then((response) => {
         response.body.forEach((award) => {
           expect(award.bookId).toBe(num);
@@ -112,7 +113,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
     });
   });
 
-  //==========================================================
+  //  ==========================================================
 
   describe('Test response for endpoint /books/:id/details/editions', () => {
 
@@ -131,7 +132,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
     });
 
     test('It should give back body obj corresponding to right id with correct format', (done) => {
-      let num = randomInt;
+      const num = randomInt;
       request(app).get(`/books/${num}}/details/editions`).then((response) => {
         response.body.forEach((edition) => {
           expect(edition).toEqual(expect.objectContaining({
@@ -143,7 +144,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
             publisher: expect.any(String),
             originalPubDate: expect.any(String),
             coverurl: expect.any(String),
-            bookId: num
+            bookId: num,
           }));
         })
         done();
@@ -151,7 +152,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
     });
   });
 
-  //==========================================================
+  //  ==========================================================
 
   describe('Test response for endpoint /books/:id/details/settings', () => {
 
@@ -170,21 +171,18 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
     });
 
     test('It should give back body obj corresponding to right id with correct format', (done) => {
-      let num = randomInt;
+      const num = randomInt;
       request(app).get(`/books/${num}}/details/settings`).then((response) => {
         response.body.forEach((edition) => {
           expect(edition).toEqual(expect.objectContaining({
             id: expect.any(Number),
             city: expect.any(String),
             country: expect.any(String),
-            bookId: num
+            bookId: num,
           }));
         })
         done();
       });
     });
   });
-
 });
-
-

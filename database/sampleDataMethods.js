@@ -1,19 +1,17 @@
 const faker = require('faker');
 
-//min inclusive, max exclusive
+// min inclusive, max exclusive
+const getRandomInt = (min, max) => {
 
-var getRandomInt = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
   return Math.floor(Math.random() * (max - min)) + min;
 };
 module.exports.getRandomInt = getRandomInt;
 
 /* =================== Book Type ===================== */
 
-var type = () => {
-  var num = getRandomInt(0, 4);
-  var typeArray = ['Hardcover', 'Paperback', 'Audio', 'Kindle'];
+const type = () => {
+  const num = getRandomInt(0, 4);
+  const typeArray = ['Hardcover', 'Paperback', 'Audio', 'Kindle'];
 
   return typeArray[num];
 };
@@ -21,9 +19,9 @@ module.exports.type = type;
 
 /* =================== Page Number ===================== */
 
-var pageNum = () => {
+const pageNum = () => {
   let num = faker.random.number();
-  //if page number is less than 10 or greater than 10,000
+  // if page number is less than 10 or greater than 10,000
   while (num < 10 || num > 2000) {
     num = faker.random.number();
   }
@@ -33,54 +31,56 @@ module.exports.pageNum = pageNum;
 
 /* =================== publisher ===================== */
 
-var publisher = () => {
+const publisher = () => {
   return faker.company.companyName();
 };
 module.exports.publisher = publisher;
 
 /* =================== First and Original Publication Dates ===================== */
 
-var dates = () => {
-  let dateObj = {
+const dates = () => {
+  const dateObj = {
     firstPubDate: null,
     orgPubDate: null,
   };
-  //helper function to add suffix to day
-  var addSuffix = (string) => {
-    let num = Number(string);
+  // helper function to add suffix to day
+  const addSuffix = (string) => {
+    const num = Number(string);
     if (num === 1 || num === 21 || num === 31) {
-      return string + 'st';
-    } else if (num === 2 || num === 22) {
-      return string + 'nd';
-    } else if (num === 3 || num === 23) {
-      return string + 'rd';
+      return `${string}st`;
+    } if (num === 2 || num === 22) {
+      return `${string}nd`;
+    } if (num === 3 || num === 23) {
+      return `${string}rd`;
     }
-    return string + 'th';
+    return `${string}th`;
   };
-  //get random date
+  // get random date
   let orgPubDate = faker.date.past(100);
-  //stringify date
-  var options = { year: 'numeric', month: 'long', day: 'numeric', localeMatcher: 'best fit'};
+  // stringify date
+  const options = {
+    year: 'numeric', month: 'long', day: 'numeric', localeMatcher: 'best fit',
+  };
   orgPubDate = orgPubDate.toLocaleDateString('en-US', options).split(' ');
-  //edit into proper format ex: [August, 15, 1987]
-  let day1 = orgPubDate[1].slice(0, orgPubDate[1].length - 1);
-  //set date to day1
+  // edit into proper format ex: [August, 15, 1987]
+  const day1 = orgPubDate[1].slice(0, orgPubDate[1].length - 1);
+  // set date to day1
   orgPubDate[1] = day1;
 
-  //create first pub date;
-  firstPubDate = orgPubDate.slice();
-  //recalculate day before;
+  // create first pub date;
+  const firstPubDate = orgPubDate.slice();
+  // recalculate day before;
   let day2 = Number(firstPubDate[1]);
   if (day2 !== '1') {
-    day2 = day2 - (Math.floor(Math.random() * day2));
+    day2 -= (Math.floor(Math.random() * day2));
   }
-  //reset date for firstPubDate;
+  // reset date for firstPubDate;
   firstPubDate[1] = day2.toString();
 
-  //add suffix to both!
+  // add suffix to both!
   orgPubDate[1] = addSuffix(orgPubDate[1]);
   firstPubDate[1] = addSuffix(firstPubDate[1]);
-  //join into string for both
+  // join into string for both
   dateObj.firstPubDate = firstPubDate.join(' ');
   dateObj.orgPubDate = orgPubDate.join(' ');
 
@@ -90,40 +90,34 @@ module.exports.dates = dates;
 
 /* =================== Title generator ===================== */
 
-var title = () => {
+const title = () => {
   return faker.random.words();
 };
 module.exports.title = title;
 
 /* =================== ISBN generator ===================== */
 
-var isbn = (limit) => {
-  let isbn = '';
+const isbn = (limit) => {
+  let isbnNum = '';
 
-  //while isbn length is less than 11;
-  while (isbn.length < (limit + 1)) {
-    //add to isbn string;
-    let num = faker.random.number();
-    isbn += num.toString();
+  // while isbn length is less than 11;
+  while (isbnNum.length < (limit + 1)) {
+    // add to isbn string;
+    const num = faker.random.number();
+    isbnNum += num.toString();
   }
-  //splice isbn until 10th char
-  isbn = isbn.slice(0, limit);
-  return isbn;
+  // splice isbn until 10th char
+  isbnNum = isbnNum.slice(0, limit);
+  return isbnNum;
 };
 module.exports.isbn = isbn;
 
 /* =================== Language generator ===================== */
 
-var language = () => {
-  let languages = ['English', 'Korean', 'Spanish', 'Polish', 'Russian', 'Japanese', 'Italian', 'French', 'Chinese', 'Indian'];
+const language = () => {
+  const languages = ['English', 'Korean', 'Spanish', 'Polish', 'Russian', 'Japanese', 'Italian', 'French', 'Chinese', 'Indian'];
 
-  var getRandomInt = (min, max) => {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min)) + min;
-  };
-  let randNum = getRandomInt(0, 10);
-
+  const randNum = getRandomInt(0, 10);
 
   return languages[randNum];
 };
@@ -131,15 +125,15 @@ module.exports.language = language;
 
 /* =================== CharactersArr ===================== */
 
-var characterArr = () => {
-  let charArr = [];
+const characterArr = () => {
+  const charArr = [];
 
   let num = getRandomInt(1, 5);
 
   while (num > 0) {
-    let characterName = faker.fake('{{name.firstName}} {{name.lastName}}');
+    const characterName = faker.fake('{{name.firstName}} {{name.lastName}}');
     charArr.push(characterName);
-    num--;
+    num -= 1;
   }
 
   return charArr;
@@ -148,32 +142,31 @@ module.exports.characterArr = characterArr;
 
 /* =================== Awards Arr ===================== */
 
-var awardsArr = () => {
-  let awardsArr = [];
+const awardsArr = () => {
+  const awardArray = [];
   let num = getRandomInt(1, 4);
 
-  let awards = [
+  const awards = [
     'Specsavers National Book Awards', 'Man Booker Prize', 'Pulitzer Prize', 'Costa Book Awards', 'Neustadt International Prize for Literature', 'Hugo Award', 'Guardian First Book Award', 'National Book Award', 'Bailey\'s Women\'s Prize for Fiction', 'The John Newbery Medal', 'Edgar Awards', 'National Book Critics Circle Award'
   ];
 
-
   while (num > 0) {
-    let awardObj = {};
-    let awardIndex = getRandomInt(0, 11);
+    const awardObj = {};
+    const awardIndex = getRandomInt(0, 11);
     awardObj.name = awards[awardIndex];
     awardObj.date = faker.date.past(5).getFullYear();
-    awardsArr.push(awardObj);
-    num--;
+    awardArray.push(awardObj);
+    num -= 1;
   }
 
-  return awardsArr;
+  return awardArray;
 };
 
 module.exports.awardsArr = awardsArr;
 
 /* =================== Cover Urls ===================== */
-var coverUrl = () => {
-  let urlStringArr = [
+const coverUrl = () => {
+  const urlStringArr = [
     'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic0.jpg',
     'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic1.jpg',
     'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic2.jpg',
@@ -185,7 +178,7 @@ var coverUrl = () => {
     'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic8.jpg',
     'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic9.jpg'
   ];
-  let num = getRandomInt(0, 10);
+  const num = getRandomInt(0, 10);
   return urlStringArr[num];
 };
 module.exports.coverUrl = coverUrl;
@@ -206,12 +199,12 @@ module.exports.coverUrl = coverUrl;
 // module.exports.rating = rating;
 
 /* =================== Editions Array ===================== */
-var editionsArr = () => {
-  let editionsArr = [];
+const editionsArr = () => {
+  const editionsArray = [];
   let num = getRandomInt(1, 8);
 
   while (num > 0) {
-    let editionsObj = {
+    const editionsObj = {
       isbn10: isbn(10),
       isbn13: isbn(13),
       title: title(),
@@ -225,31 +218,32 @@ var editionsArr = () => {
       // rating: rating()
     };
 
-    editionsArr.push(editionsObj);
-    num--;
+    editionsArray.push(editionsObj);
+    num -= 1;
   }
-  return editionsArr;
+  return editionsArray;
 };
 
 module.exports.editionsArr = editionsArr;
 
 /* =================== Settings Array ===================== */
 
-var settingsArr = () => {
+const settingsArr = () => {
+  const location = () => {
+    const city = faker.address.city()
+    const country = faker.address.country()
+    return { city, country };
+  };
 
-  var location = () => {
-    let city = faker.address.city()
-    let country = faker.address.country()
-    return { city: city, country: country };
+  const settingsArray = [];
+  const num = getRandomInt(1, 6)
+
+  for (let i = 0; i < num; i += 1) {
+    settingsArray.push(location());
   }
 
-  let settingsArr = [];
-  let num = getRandomInt(1, 6)
+  return settingsArray;
+};
 
-  for (var i = 0 ; i < num ; i++) {
-    settingsArr.push(location());
-  }
-
-  return settingsArr;
-}
 module.exports.settingsArr = settingsArr;
+

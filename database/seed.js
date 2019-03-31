@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 const mysql = require('mysql');
 const Promise = require('bluebird');
 const { seedAllData } = require('./seedMethods');
@@ -10,40 +11,7 @@ const connection = mysql.createConnection({
 
 const db = Promise.promisifyAll(connection, { multiArgs: true });
 
-db.connectAsync()
-  .then(() => console.log(`connected to mysql with id ${db.threadId}`))
-  .error((err) => { console.log('error connecting to db', err); });
-
-db.queryAsync('CREATE DATABASE IF NOT EXISTS books')
-  .then(()=> {
-    return db.queryAsync('use books')
-  })
-  .then(()=> {
-    return setupDb();
-  })
-  .then(() => {
-    db.queryAsync('select count(id) from details')
-      .then(results => {
-        let dataCount = (results[0][0]['count(id)']);
-        return dataCount;
-      })
-      .then(async (dataCount) => {
-        if (dataCount !== 100) {
-          console.log('data set empty! seeding data!');
-          return seedAllData(db)
-        } else {
-          console.log('data set already exists');
-        }
-      })
-      .catch((err) => console.log('err seeding db', err));
-  })
-  .catch(() => {
-    console.log('DAMN!')
-  })
-
-
-var setupDb = () => {
-
+const setupDb = () => {
   return db.queryAsync(`
     CREATE TABLE IF NOT EXISTS details (
       id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
@@ -56,16 +24,14 @@ var setupDb = () => {
       isbn10 VARCHAR(20),
       isbn13 VARCHAR(20),
       language VARCHAR(20)
-      );`
-  )
+      );`)
     .then(() => {
       return db.queryAsync(`
         CREATE TABLE IF NOT EXISTS characters (
           id INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
           name VARCHAR(100),
           bookId INT
-        );`
-      );
+        );`);
     })
     .then(() => {
       return db.queryAsync(`
@@ -74,8 +40,7 @@ var setupDb = () => {
           city VARCHAR(150),
           country VARCHAR(150),
           bookId INT
-        );`
-      );
+        );`);
     })
     .then(() => {
       return db.queryAsync(`
@@ -84,8 +49,7 @@ var setupDb = () => {
           name VARCHAR(100),
           year INT,
           bookId INT
-        );`
-      );
+        );`);
     })
     .then(() => {
       return db.queryAsync(`
@@ -99,12 +63,41 @@ var setupDb = () => {
           originalPubDate VARCHAR(30),
           coverurl VARCHAR(250),
           bookId INT
-        );`
-      );
+        );`);
     })
     .error((err) => {
       console.log('error making tables', err);
     });
 };
 
+// seed database!
 
+db.connectAsync()
+  .then(() => console.log(`connected to mysql with id ${db.threadId}`))
+  .error((err) => { console.log('error connecting to db', err); });
+
+db.queryAsync('CREATE DATABASE IF NOT EXISTS books')
+  .then(() => {
+    return db.queryAsync('use books');
+  })
+  .then(() => {
+    return setupDb();
+  })
+  .then(() => {
+    db.queryAsync('select count(id) from details')
+      .then((results) => {
+        const dataCount = (results[0][0]['count(id)']);
+        return dataCount;
+      })
+      .then((dataCount) => {
+        if (dataCount !== 100) {
+          console.log('data set empty! seeding data!');
+          return seedAllData(db);
+        }
+        return console.log('data set already exists');
+      })
+      .catch(err => console.log('err seeding db', err));
+  })
+  .catch(() => {
+    console.log('DAMN!');
+  });
