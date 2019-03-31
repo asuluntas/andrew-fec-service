@@ -13,7 +13,7 @@ describe('Test endpoint GET /books/:id/details', () => {
   });
 
   test('It should give back body corresponding to right id', (done) => {
-    let num = randomInt
+    let num = randomInt;
     request(app).get(`/books/${num}}/details`).then((response) => {
       expect(response.body.id).toBe(num);
       done();
@@ -70,7 +70,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
     });
 
     test('It should give back body obj corresponding to right id with correct format', (done) => {
-      let num = randomInt
+      let num = randomInt;
       request(app).get(`/books/${num}}/details/characters`).then((response) => {
         response.body.forEach((char) => {
           expect(char.bookId).toBe(num);
@@ -100,7 +100,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
     });
 
     test('It should give back body obj corresponding to right id with correct format', (done) => {
-      let num = randomInt
+      let num = randomInt;
       request(app).get(`/books/${num}}/details/awards`).then((response) => {
         response.body.forEach((award) => {
           expect(award.bookId).toBe(num);
@@ -111,14 +111,12 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
       });
     });
 
-
-
-
   });
 
   //==========================================================
 
   describe('Test response for endpoint /books/:id/details/editions', () => {
+
     test('It should give correct status code response to GET editions table', (done) => {
       request(app).get(`/books/${randomInt}}/details/editions`).then((response) => {
         expect(response.statusCode).toBe(200);
@@ -134,7 +132,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
     });
 
     test('It should give back body obj corresponding to right id with correct format', (done) => {
-      let num = randomInt
+      let num = randomInt;
       request(app).get(`/books/${num}}/details/editions`).then((response) => {
         response.body.forEach((edition) => {
           expect(edition).toEqual(expect.objectContaining({
