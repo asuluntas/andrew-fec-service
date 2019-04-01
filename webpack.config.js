@@ -1,5 +1,7 @@
+/* eslint-disable prefer-template */
+/* eslint-disable no-path-concat */
 
-//WEBPACK CONFIG!
+// WEBPACK CONFIG!
 
 console.log(__dirname);
 
@@ -8,7 +10,7 @@ module.exports = {
 
   output: {
     filename: 'bundle.js',
-    path: __dirname + '/public'
+    path: __dirname + '/public',
   },
 
   module: {
@@ -19,7 +21,7 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-react', '@babel/preset-env']
+            presets: ['@babel/preset-react', '@babel/preset-env'],
           }
         }
       }
