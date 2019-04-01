@@ -1,3 +1,4 @@
+/* eslint-disable comma-dangle */
 /* eslint-disable prefer-template */
 /* eslint-disable no-path-concat */
 

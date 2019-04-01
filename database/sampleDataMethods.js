@@ -2,7 +2,6 @@ const faker = require('faker');
 
 // min inclusive, max exclusive
 const getRandomInt = (min, max) => {
-
   return Math.floor(Math.random() * (max - min)) + min;
 };
 module.exports.getRandomInt = getRandomInt;
@@ -147,7 +146,7 @@ const awardsArr = () => {
   let num = getRandomInt(1, 4);
 
   const awards = [
-    'Specsavers National Book Awards', 'Man Booker Prize', 'Pulitzer Prize', 'Costa Book Awards', 'Neustadt International Prize for Literature', 'Hugo Award', 'Guardian First Book Award', 'National Book Award', 'Bailey\'s Women\'s Prize for Fiction', 'The John Newbery Medal', 'Edgar Awards', 'National Book Critics Circle Award'
+    'Specsavers National Book Awards', 'Man Booker Prize', 'Pulitzer Prize', 'Costa Book Awards', 'Neustadt International Prize for Literature', 'Hugo Award', 'Guardian First Book Award', 'National Book Award', 'Bailey\'s Women\'s Prize for Fiction', 'The John Newbery Medal', 'Edgar Awards', 'National Book Critics Circle Award',
   ];
 
   while (num > 0) {
@@ -176,7 +175,7 @@ const coverUrl = () => {
     'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic6.jpg',
     'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic7.jpg',
     'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic8.jpg',
-    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic9.jpg'
+    'https://s3.us-east-2.amazonaws.com/hrr37-fec/fec-bookcovers/editionPic9.jpg',
   ];
   const num = getRandomInt(0, 10);
   return urlStringArr[num];
@@ -230,13 +229,13 @@ module.exports.editionsArr = editionsArr;
 
 const settingsArr = () => {
   const location = () => {
-    const city = faker.address.city()
-    const country = faker.address.country()
+    const city = faker.address.city();
+    const country = faker.address.country();
     return { city, country };
   };
 
   const settingsArray = [];
-  const num = getRandomInt(1, 6)
+  const num = getRandomInt(1, 6);
 
   for (let i = 0; i < num; i += 1) {
     settingsArray.push(location());
@@ -246,4 +245,3 @@ const settingsArr = () => {
 };
 
 module.exports.settingsArr = settingsArr;
-
