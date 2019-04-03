@@ -1,13 +1,9 @@
 // jest.config.js
-var getRandomInt = (min, max) => {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min)) + min;
-};
+const getRandomInt = (min, max) => Math.floor(Math.random() * (max - min)) + min;
 
 module.exports = {
   verbose: true,
   globals: {
-    randomInt: getRandomInt(1, 101)
-  }
+    randomInt: getRandomInt(1, 101),
+  },
 };
