@@ -8,10 +8,32 @@
     "node": ">=6.13.0"
   },
   "scripts": {
+    "start": "node server/server.js",
+    "start:dev": "nodemon server/server.js",
+    "drop:tables": "node database/dropTables.js",
+    "seed": "node database/seed.js",
+    "build:dev": "webpack -d --watch",
+    "test": "jest /test"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "bluebird": "^3.5.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "faker": "^4.1.0",
+    "morgan": "^1.9.1",
+    "mysql": "^2.16.0"
   },
   "devDependencies": {
-    "eslint-config-hackreactor": "git://github.com/reactorcore/eslint-config-hackreactor"
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.4.0",
+    "@babel/preset-env": "^7.4.2",
+    "@babel/preset-react": "^7.0.0",
+    "babel-jest": "^24.5.0",
+    "babel-loader": "^8.0.5",
+    "jest": "^24.5.0",
+    "supertest": "^4.0.2",
+    "webpack": "^4.29.6",
+    "webpack-cli": "^3.3.0"
   }
 }
