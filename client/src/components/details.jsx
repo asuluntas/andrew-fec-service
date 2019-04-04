@@ -30,13 +30,19 @@ class Details extends React.Component {
 
 
   render() {
-    console.log(this.state);
-    const {type, pagenum, originalPubDate, firstPubDate, publisher} = this.state.details
+    console.log(this.state.details);
+    if (!this.state.details) {
+      return( <div></div> )
+    }
+
+    let { type, pagenum, originalPubDate, firstPubDate, publisher } = this.state.details
+    let typeAndPageNumberLine = `${type}, ${pagenum} pages`
+    let publishInfoLine = `Published ${originalPubDate} by ${publisher} (first published ${firstPubDate})`
 
     return (
       <div>
-        {`${type}, ${pagenum} pages\n
-        Published ${originalPubDate} by ${publisher} (first published ${firstPubDate})`}
+        <div>{typeAndPageNumberLine}</div>
+        <div>{publishInfoLine}</div>
       </div>
     )
   }
