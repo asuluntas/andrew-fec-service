@@ -1,5 +1,25 @@
-import React, { useState } from 'react';
+import React from 'react';
+import {
+  BrowserRouter as Router,
+  Route,
+} from 'react-router-dom';
+import Details from './details.jsx';
 
-const Hello = () => {
-  const [count, setCount] = useState(0);
-};
+class App extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+
+  render() {
+
+    return (
+      <div>
+        <Router>
+          <Route path="/books/:id" component={Details} />
+        </Router>
+      </div>
+    )
+  }
+}
+
+export default App;
