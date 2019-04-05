@@ -57,18 +57,18 @@ class Characters extends React.Component {
     return allCharactersArray;
   }
 
-  charactersLine(array) {
+  generateCharactersLine(array) {
     const charactersMain = array;
-    const spanArray = [];
+    const characterSpanArray = [];
     const lastIndex = charactersMain.length - 1;
 
-    charactersMain.slice(0, lastIndex).forEach((elem, i) => {
-      spanArray.push(<GreenButton key={i}>{elem + ', '}</GreenButton>);
+    charactersMain.slice(0, lastIndex).forEach((character, i) => {
+      characterSpanArray.push(<GreenButton key={i}>{character + ', '}</GreenButton>);
     });
 
-    spanArray.push(<GreenButton key={lastIndex}>{charactersMain[lastIndex]}</GreenButton>);
+    characterSpanArray.push(<GreenButton key={lastIndex}>{charactersMain[lastIndex]}</GreenButton>);
 
-    return spanArray;
+    return characterSpanArray;
   }
 
   handleClick(e) {
@@ -87,9 +87,9 @@ class Characters extends React.Component {
       <div>
         <DetailBoxRowTitle>Characters</DetailBoxRowTitle>
         <DetailBoxRowItem>
-          { this.charactersLine(charactersMain) }
+          { this.generateCharactersLine(charactersMain) }
           {moreToggle && (<span>, </span>) }
-          {moreToggle && this.charactersLine(charactersMore)}
+          {moreToggle && this.generateCharactersLine(charactersMore)}
           {
             charactersMore && (
             <GreenButton

@@ -58,40 +58,40 @@ class Awards extends React.Component {
     return allAwardsArray;
   }
 
-  // charactersLine(array) {
-  //   const charactersMain = array;
-  //   const spanArray = [];
-  //   const lastIndex = charactersMain.length - 1;
+  generateAwardsLine(array) {
+    const awardsMain = array;
+    const awardSpanArray = [];
+    const lastIndex = awardsMain.length - 1;
 
-  //   charactersMain.slice(0, lastIndex).forEach((elem, i) => {
-  //     spanArray.push(<GreenButton key={i}>{elem + ', '}</GreenButton>);
-  //   });
+    awardsMain.slice(0, lastIndex).forEach((award, i) => {
+      awardSpanArray.push(<GreenButton key={i}>{award + ', '}</GreenButton>);
+    });
 
-  //   spanArray.push(<GreenButton key={lastIndex}>{charactersMain[lastIndex]}</GreenButton>);
+    awardSpanArray.push(<GreenButton key={lastIndex}>{awardsMain[lastIndex]}</GreenButton>);
 
-  //   return spanArray;
-  // }
+    return awardSpanArray;
+  }
 
-  // handleClick(e) {
-  //   e.preventDefault();
-  //   this.setState(state => ({ moreToggle: !state.moreToggle }));
-  // }
+  handleClick(e) {
+    e.preventDefault();
+    this.setState(state => ({ moreToggle: !state.moreToggle }));
+  }
 
   render() {
     console.log(this.state);
-    // const { charactersMain, charactersMore, moreToggle } = this.state;
+    const { awardsMain, awardsMore, moreToggle } = this.state;
 
-    // if (charactersMain === null) {
+    if (awardsMain === null) {
       return (null);
-    // }
+    }
 
-    // return (
+    return (
     //   <div>
     //     <DetailBoxRowTitle>Characters</DetailBoxRowTitle>
     //     <DetailBoxRowItem>
-    //       {this.charactersLine(charactersMain)}
+    //       {this.generateAwardsLine(charactersMain)}
     //       {moreToggle && (<span>, </span>)}
-    //       {moreToggle && this.charactersLine(charactersMore)}
+    //       {moreToggle && this.generateAwardsLine(charactersMore)}
     //       {
     //         charactersMore && (
     //           <GreenButton
@@ -103,7 +103,8 @@ class Awards extends React.Component {
     //       }
     //     </DetailBoxRowItem>
     //   </div>
-    // );
+    null
+    );
   }
 }
 
