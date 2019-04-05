@@ -5,7 +5,26 @@
 /* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import DetailDataBox from './detailDataBox.jsx';
+
+const DetailBody = styled.div`
+  margin: 0px auto;
+  width: 455px;
+  background: #FFFFFF;
+  padding: 5px 0;
+  display: block;
+  line-height: 18px;
+  font-size: 12px;
+  text-align: left;
+  word-wrap: break-word;
+  color: #333;
+  font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
+`;
+
+const FirstPubDate = styled.span`
+  color: #999999;
+`;
 
 class Header extends React.Component {
   constructor(props) {
@@ -39,12 +58,13 @@ class Header extends React.Component {
       type, pagenum, originalPubDate, firstPubDate, publisher,
     } = this.state.details;
     const typeAndPageNumberLine = `${type}, ${pagenum} pages`;
-    const publishInfoLine = `Published ${originalPubDate} by ${publisher} (first published ${firstPubDate})`;
+    const publishInfoLine = `Published ${originalPubDate} by ${publisher}`;
+    const firstPubDateLine = `(first published ${firstPubDate} )`;
 
     return (
       <div>
         <div>{typeAndPageNumberLine}</div>
-        <div>{publishInfoLine}</div>
+        <div>{publishInfoLine}  <FirstPubDate>{firstPubDateLine}</FirstPubDate></div>
       </div>
     );
   }
@@ -62,7 +82,7 @@ class Header extends React.Component {
     }
     const { moreToggle } = this.state;
     return (
-      <div>
+      <DetailBody>
         {this.header()}
 
         {moreToggle ? (<DetailDataBox details={this.state.details} />) : null}
@@ -73,7 +93,7 @@ class Header extends React.Component {
         </div>
 
 
-      </div>
+      </DetailBody>
     );
   }
 }
