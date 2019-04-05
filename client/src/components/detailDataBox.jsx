@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { MainInfo } from './mainInfo.jsx';
+import Characters from './characters.jsx';
 
 const DataBoxWrapper = styled.div`
   margin: 10px 0px;
@@ -8,13 +9,13 @@ const DataBoxWrapper = styled.div`
 
 const DetailDataBox = (props) => {
   const {
-    title, isbn10, isbn13, language,
+    id, title, isbn10, isbn13, language,
   } = props.details;
 
   const mainInfo = {
-    title, isbn10, isbn13, language,
+    id, title, isbn10, isbn13, language,
   }
-
+  console.log(props.details, 'what are my props in detailDataBox')
   return (
     <div>
       <DataBoxWrapper>
@@ -22,6 +23,7 @@ const DetailDataBox = (props) => {
         <MainInfo
           mainInfo={mainInfo}
         />
+        <Characters id={id} />
 
       </DataBoxWrapper>
     </div>

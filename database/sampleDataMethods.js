@@ -127,7 +127,7 @@ module.exports.language = language;
 const characterArr = () => {
   const charArr = [];
 
-  let num = getRandomInt(1, 5);
+  let num = getRandomInt(1, 15);
 
   while (num > 0) {
     const characterName = faker.fake('{{name.firstName}} {{name.lastName}}');

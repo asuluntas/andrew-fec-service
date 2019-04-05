@@ -9,8 +9,9 @@ const DetailBoxRowTitle = styled.div`
   float: left;
 `;
 
-const DetialBoxRowItem = styled.div`
+const DetailBoxRowItem = styled.div`
   width: 75%;
+  float: left;
 `;
 
 // const GreyItem = styled.span`
@@ -27,21 +28,21 @@ const MainInfo = (props) => {
 
       <div>
         <DetailBoxRowTitle>Original Title</DetailBoxRowTitle>
-        <DetialBoxRowItem>{title}</DetialBoxRowItem>
+        <DetailBoxRowItem>{title}</DetailBoxRowItem>
       </div>
 
       <div>
         <DetailBoxRowTitle>ISBN</DetailBoxRowTitle>
-        <DetialBoxRowItem>
+        <DetailBoxRowItem>
           {`${isbn10}`}
           &nbsp;
           <GreyItem>{`(ISBN13: ${isbn13})`}</GreyItem>
-        </DetialBoxRowItem>
+        </DetailBoxRowItem>
       </div>
 
       <div>
         <DetailBoxRowTitle>Language</DetailBoxRowTitle>
-        <DetialBoxRowItem>{language}</DetialBoxRowItem>
+        <DetailBoxRowItem>{language}</DetailBoxRowItem>
       </div>
 
     </div>
@@ -51,5 +52,5 @@ const MainInfo = (props) => {
 export {
   MainInfo,
   DetailBoxRowTitle,
-  DetialBoxRowItem,
+  DetailBoxRowItem,
 };
