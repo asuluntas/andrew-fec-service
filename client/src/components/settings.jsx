@@ -63,7 +63,6 @@ class Settings extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const { settingsMain, settingsMore, moreToggle } = this.state;
 
     if (settingsMain === null) {

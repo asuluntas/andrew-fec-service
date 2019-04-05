@@ -7,26 +7,36 @@ class Editions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      details: null,
+      editionsMain: null,
+      editionsMore: null,
     };
   }
 
-  // getSettings() {
-  //   const { id } = this.props;
-  //   axios.get(`/books/${id}/details/editions`)
-  //     .then((res) => {
-  //       const settingsArr = res.data;
-  //       const { length } = settingsArr;
-  //       this.setState({
-  //         settingsMain: settingsArr.slice(0, 3),
-  //         settingsMore: settingsArr.slice(3, length),
-  //       });
-  //     })
-  //     .catch(err => console.log('error get details', err));
-  // }
+  componentDidMount() {
+    this.getEditions();
+  }
+
+  getEditions() {
+    const { id } = this.props;
+    axios.get(`/books/${id}/details/editions`)
+      .then((res) => {
+        const editionsArr = res.data;
+        const { length } = editionsArr;
+        const editionsMain = editionsArr.slice(0, 5);
+        let editionsMore = editionsArr.slice(5, length);
+        if (editionsMore.length === 0) {
+          editionsMore = null;
+        }
+        this.setState({
+          editionsMain,
+          editionsMore,
+        });
+      })
+      .catch(err => console.log('error get details', err));
+  }
 
   render() {
-
+    console.log(this.state);
     return (
       <div>
         <DetailBoxRowTitle>Other Editions</DetailBoxRowTitle>
