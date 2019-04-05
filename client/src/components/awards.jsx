@@ -59,15 +59,15 @@ class Awards extends React.Component {
   }
 
   generateAwardsLine(array) {
-    const awardsMain = array;
+    // const awardsMain = array;
     const awardSpanArray = [];
-    const lastIndex = awardsMain.length - 1;
+    const lastIndex = array.length - 1;
 
-    awardsMain.slice(0, lastIndex).forEach((award, i) => {
+    array.slice(0, lastIndex).forEach((award, i) => {
       awardSpanArray.push(<GreenButton key={i}>{award + ', '}</GreenButton>);
     });
 
-    awardSpanArray.push(<GreenButton key={lastIndex}>{awardsMain[lastIndex]}</GreenButton>);
+    awardSpanArray.push(<GreenButton key={lastIndex}>{array[lastIndex]}</GreenButton>);
 
     return awardSpanArray;
   }
