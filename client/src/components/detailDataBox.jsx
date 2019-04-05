@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { MainInfo } from './mainInfo.jsx';
 import Characters from './characters.jsx';
+import Settings from './settings.jsx';
 import Awards from './awards.jsx';
 
 const DataBoxWrapper = styled.div`
@@ -25,6 +26,7 @@ const DetailDataBox = (props) => {
           mainInfo={mainInfo}
         />
         <Characters id={id} />
+        <Settings id={id} />
         <Awards id={id} />
       </DataBoxWrapper>
     </div>
