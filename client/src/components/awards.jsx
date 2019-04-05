@@ -78,7 +78,6 @@ class Awards extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const { awardsMain, awardsMore, moreToggle } = this.state;
 
     if (awardsMain === null) {
@@ -86,24 +85,23 @@ class Awards extends React.Component {
     }
 
     return (
-    //   <div>
-    //     <DetailBoxRowTitle>Characters</DetailBoxRowTitle>
-    //     <DetailBoxRowItem>
-    //       {this.generateAwardsLine(charactersMain)}
-    //       {moreToggle && (<span>, </span>)}
-    //       {moreToggle && this.generateAwardsLine(charactersMore)}
-    //       {
-    //         charactersMore && (
-    //           <GreenButton
-    //             onClick={(e) => { this.handleClick(e); }}
-    //           >
-    //             {moreToggle ? '...less' : '...more'}
-    //           </GreenButton>
-    //         )
-    //       }
-    //     </DetailBoxRowItem>
-    //   </div>
-    null
+      <div>
+        <DetailBoxRowTitle>Awards</DetailBoxRowTitle>
+        <DetailBoxRowItem>
+          {this.generateAwardsLine(awardsMain)}
+          {moreToggle && (<br />)}
+          {moreToggle && this.generateAwardsLine(awardsMore)}
+          {
+            awardsMore && (
+              <GreenButton
+                onClick={(e) => { this.handleClick(e); }}
+              >
+                {moreToggle ? ' ...less' : ' ...more'}
+              </GreenButton>
+            )
+          }
+        </DetailBoxRowItem>
+      </div>
     );
   }
 }

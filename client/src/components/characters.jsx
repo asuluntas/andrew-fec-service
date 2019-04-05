@@ -95,7 +95,7 @@ class Characters extends React.Component {
             <GreenButton
               onClick={(e) => { this.handleClick(e); }}
             >
-              {moreToggle ? '...less' : '...more'}
+              {moreToggle ? ' ...less' : ' ...more'}
             </GreenButton>
             )
           }
