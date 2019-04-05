@@ -24,37 +24,37 @@ class Characters extends React.Component {
     const { id } = this.props;
     axios.get(`/books/${id}/details/characters`)
       .then((res) => {
-        const charactersLineArr = this.generateCharacterLineArray(res.data);
+        const allCharactersArr = this.generateCharactersMainAndMore(res.data);
         this.setState({
-          charactersMain: charactersLineArr[0],
-          charactersMore: charactersLineArr[1],
+          charactersMain: allCharactersArr[0],
+          charactersMore: allCharactersArr[1],
         });
       })
       .catch(err => console.log('error get details', err));
   }
 
-  generateCharacterLineArray(characters) {
-    let stringCount1 = 0;
-    const string1Arr = [];
-    const string2Arr = [];
+  generateCharactersMainAndMore(characters) {
+    let mainCharactersTotalStringLength = 0;
+    const mainCharactersArr = [];
+    const moreCharactersArr = [];
 
     for (let i = 0; i < characters.length; i += 1) {
       const { name } = characters[i];
-      if (stringCount1 < 100) {
-        stringCount1 += (name.length + 2);
-        string1Arr.push(name);
+      if (mainCharactersTotalStringLength < 100) {
+        mainCharactersTotalStringLength += (name.length + 2);
+        mainCharactersArr.push(name);
       } else {
-        string2Arr.push(name);
+        moreCharactersArr.push(name);
       }
     }
 
-    const stringArray = [string1Arr, string2Arr];
+    const allCharactersArray = [mainCharactersArr, moreCharactersArr];
 
-    if (stringArray[1].length === 0) {
-      stringArray[1] = null;
+    if (allCharactersArray[1].length === 0) {
+      allCharactersArray[1] = null;
     }
 
-    return stringArray;
+    return allCharactersArray;
   }
 
   charactersLine(array) {

@@ -24,39 +24,39 @@ class Awards extends React.Component {
     const { id } = this.props;
     axios.get(`/books/${id}/details/awards`)
       .then((res) => {
-        console.log(res.data);
-        // const awardLineArr = this.generateAwardLineArray(res.data);
-        // this.setState({
-        //   awardsMain: awardLineArr[0],
-        //   awardsMore: awardLineArr[1],
-        // });
+        const allAwardsArr = this.generateAwardsMainAndMore(res.data);
+        this.setState({
+          awardsMain: allAwardsArr[0],
+          awardsMore: allAwardsArr[1],
+        });
       })
       .catch(err => console.log('error get details', err));
   }
 
-  // generateAwardLineArray(awards) {
-  //   let stringCount1 = 0;
-  //   const string1Arr = [];
-  //   const string2Arr = [];
+  generateAwardsMainAndMore(awards) {
+    let mainAwardsTotalStringLength = 0;
+    const mainAwardsArr = [];
+    const moreAwardsArr = [];
 
-  //   for (let i = 0; i < awards.length; i += 1) {
-  //     const { name } = awards[i];
-  //     if (stringCount1 < 100) {
-  //       stringCount1 += (name.length + 2);
-  //       string1Arr.push(name);
-  //     } else {
-  //       string2Arr.push(name);
-  //     }
-  //   }
+    for (let i = 0; i < awards.length; i += 1) {
+      const { name, year } = awards[i];
+      const award = `${name} (${year})`;
+      if (mainAwardsTotalStringLength < 210) {
+        mainAwardsTotalStringLength += (award.length + 2);
+        mainAwardsArr.push(award);
+      } else {
+        moreAwardsArr.push(award);
+      }
+    }
 
-  //   const stringArray = [string1Arr, string2Arr];
+    const allAwardsArray = [mainAwardsArr, moreAwardsArr];
 
-  //   if (stringArray[1].length === 0) {
-  //     stringArray[1] = null;
-  //   }
+    if (allAwardsArray[1].length === 0) {
+      allAwardsArray[1] = null;
+    }
 
-  //   return stringArray;
-  // }
+    return allAwardsArray;
+  }
 
   // charactersLine(array) {
   //   const charactersMain = array;
@@ -78,6 +78,7 @@ class Awards extends React.Component {
   // }
 
   render() {
+    console.log(this.state);
     // const { charactersMain, charactersMore, moreToggle } = this.state;
 
     // if (charactersMain === null) {
