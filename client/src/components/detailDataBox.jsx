@@ -1,5 +1,10 @@
 import React from 'react';
-import MainInfo from './mainInfo.jsx';
+import styled from 'styled-components';
+import { MainInfo } from './mainInfo.jsx';
+
+const DataBoxWrapper = styled.div`
+  margin: 10px 0px;
+`;
 
 const DetailDataBox = (props) => {
   const {
@@ -12,9 +17,13 @@ const DetailDataBox = (props) => {
 
   return (
     <div>
-      <MainInfo
-        mainInfo={mainInfo}
-      />
+      <DataBoxWrapper>
+
+        <MainInfo
+          mainInfo={mainInfo}
+        />
+
+      </DataBoxWrapper>
     </div>
   );
 };

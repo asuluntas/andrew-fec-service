@@ -23,7 +23,7 @@ const DetailBody = styled.div`
   font-family: "Lato", "Helvetica Neue", "Helvetica", sans-serif;
 `;
 
-const FirstPubDate = styled.span`
+const GreyItem = styled.span`
   color: #999999;
 `;
 
@@ -31,14 +31,14 @@ const Buttons = styled.div`
   padding: 5px 0;
 `;
 
-const MoreButton = styled.span`
+const GreenButton = styled.span`
   color: #00635d;
   &:hover {
     text-decoration: underline;
   }
 `;
 
-const EditButton = styled(MoreButton)`
+const GreyButton = styled(GreenButton)`
   color: #999999;
   float: right;
   margin-right: 5px;
@@ -82,7 +82,11 @@ class Header extends React.Component {
     return (
       <div>
         <div>{typeAndPageNumberLine}</div>
-        <div>{publishInfoLine}  <FirstPubDate>{firstPubDateLine}</FirstPubDate></div>
+        <div>
+          {publishInfoLine}
+          &nbsp;
+          <GreyItem>{firstPubDateLine}</GreyItem>
+        </div>
       </div>
     );
   }
@@ -106,12 +110,12 @@ class Header extends React.Component {
         {moreToggle ? (<DetailDataBox details={this.state.details} />) : null}
 
         <Buttons>
-          <MoreButton onClick={(e) => { this.handleClick(e); }}>
+          <GreenButton onClick={(e) => { this.handleClick(e); }}>
             {moreToggle ? '...Less Detail' : 'More Details...'}
-          </MoreButton>
-          <EditButton>
+          </GreenButton>
+          <GreyButton>
             edit details
-          </EditButton>
+          </GreyButton>
         </Buttons>
 
       </DetailBody>
@@ -119,4 +123,8 @@ class Header extends React.Component {
   }
 }
 
-export default Header;
+export {
+  Header,
+  GreenButton,
+  GreyItem,
+};
