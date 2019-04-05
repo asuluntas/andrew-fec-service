@@ -1,7 +1,32 @@
 import React from 'react';
 import axios from 'axios';
+import styled from 'styled-components';
 import { DetailBoxRowTitle, DetailBoxRowItem } from './mainInfo.jsx';
 import { GreenButton, GreyItem } from './header.jsx';
+
+const ImgWrapper = styled.img`
+  max-width: 55px;
+  height: 55px;
+  border: 0;
+`;
+
+const ImgUlWrapper = styled.ul`
+  display: block;
+  list-style-type: disc;
+  margin-block-start: 0px;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 0px;
+`;
+
+const ImgLiWrapper = styled.li`
+  display: inline-block;
+  list-style-type: none;
+  margin: 0px;
+  padding-top: 3px;
+  padding-right: 2px;
+`;
 
 class Editions extends React.Component {
   constructor(props) {
@@ -9,6 +34,7 @@ class Editions extends React.Component {
     this.state = {
       editionsMain: null,
       editionsMore: null,
+      editionsCount: null,
     };
   }
 
@@ -30,17 +56,44 @@ class Editions extends React.Component {
         this.setState({
           editionsMain,
           editionsMore,
+          editionsCount: length,
         });
       })
       .catch(err => console.log('error get details', err));
   }
 
+  generateImageLine() {
+    const { editionsMain } = this.state;
+    const imgArray = [];
+    editionsMain.forEach((edition, i) => {
+      const { id, coverurl, title } = edition;
+      imgArray.push(
+        <ImgLiWrapper key={id}>
+          <ImgWrapper key={id} src={coverurl} alt={title} />
+        </ImgLiWrapper>
+      );
+    });
+    return imgArray;
+  }
+
   render() {
     console.log(this.state);
+    const { editionsCount, editionsMain, editionsMore } = this.state;
+
+    if (editionsMain === null) {
+      return (null);
+    }
+
     return (
       <div>
-        <DetailBoxRowTitle>Other Editions</DetailBoxRowTitle>
-        <DetailBoxRowItem>Other Editions</DetailBoxRowItem>
+        <DetailBoxRowTitle>
+          {`Other Editions (${editionsCount})`}
+        </DetailBoxRowTitle>
+        <DetailBoxRowItem>
+          <ImgUlWrapper>
+            {this.generateImageLine()}
+          </ImgUlWrapper>
+        </DetailBoxRowItem>
       </div>
     );
   }
