@@ -8,6 +8,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import DetailDataBox from './detailDataBox.jsx';
+import Editions from './otherEditions.jsx'
 
 const DetailBody = styled.div`
   margin: 0px auto;
@@ -71,7 +72,7 @@ class Header extends React.Component {
       .catch(err => console.log('error get details', err));
   }
 
-  header() {
+  generatePublisherInfoLine() {
     const {
       type, pagenum, originalPubDate, firstPubDate, publisher,
     } = this.state.details;
@@ -102,12 +103,14 @@ class Header extends React.Component {
     if (!this.state.details) {
       return (<div />);
     }
-    const { moreToggle } = this.state;
+
+    const { id, moreToggle } = this.state;
     return (
       <DetailBody>
-        {this.header()}
+        {this.generatePublisherInfoLine()}
 
         {moreToggle ? (<DetailDataBox details={this.state.details} />) : null}
+        {moreToggle ? (<Editions id={id} />) : null}
 
         <Buttons>
           <GreenButton onClick={(e) => { this.handleClick(e); }}>
