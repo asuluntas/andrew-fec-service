@@ -1,3 +1,4 @@
+/* eslint-disable jsx-a11y/mouse-events-have-key-events */
 /* eslint-disable import/extensions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
@@ -26,6 +27,21 @@ const FirstPubDate = styled.span`
   color: #999999;
 `;
 
+const Buttons = styled.div`
+  padding: 5px 0;
+`;
+
+const MoreButton = styled.span`
+  color: #00635d;
+  text-decoration: ${props => (props.hover ? 'underline' : 'none')};
+`;
+
+const EditButton = styled(MoreButton)`
+  color: #999999;
+  float: right;
+  margin-right: 5px;
+`;
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -33,6 +49,8 @@ class Header extends React.Component {
       moreToggle: false,
       id: (this.props.match.params.id),
       details: null,
+      moreHover: false,
+      editHover: false,
     };
   }
 
@@ -74,6 +92,34 @@ class Header extends React.Component {
     this.setState(state => ({ moreToggle: !state.moreToggle }));
   }
 
+  handleMoreMouseOver(e) {
+    e.preventDefault();
+    this.setState({
+      moreHover: true,
+    });
+  }
+
+  handleMoreMouseOut(e) {
+    e.preventDefault();
+    this.setState({
+      moreHover: false,
+    });
+  }
+
+  handleEditMouseOver(e) {
+    e.preventDefault();
+    this.setState({
+      editHover: true,
+    });
+  }
+
+  handleEditMouseOut(e) {
+    e.preventDefault();
+    this.setState({
+      editHover: false,
+    });
+  }
+
   render() {
     console.log(this.state);
 
@@ -87,10 +133,23 @@ class Header extends React.Component {
 
         {moreToggle ? (<DetailDataBox details={this.state.details} />) : null}
 
-        <div>
-          <span onClick={(e) => { this.handleClick(e); }}>{moreToggle ? '...Less Detail' : 'More Details...'}</span>
-          <span>edit details</span>
-        </div>
+        <Buttons>
+          <MoreButton
+            onMouseOver={(e) => { this.handleMoreMouseOver(e); }}
+            onMouseOut={(e) => { this.handleMoreMouseOut(e); }}
+            hover={this.state.moreHover}
+            onClick={(e) => { this.handleClick(e); }}
+          >
+            {moreToggle ? '...Less Detail' : 'More Details...'}
+          </MoreButton>
+          <EditButton
+            onMouseOver={(e) => { this.handleEditMouseOver(e); }}
+            onMouseOut={(e) => { this.handleEditMouseOut(e); }}
+            hover={this.state.editHover}
+          >
+            edit details
+          </EditButton>
+        </Buttons>
 
 
       </DetailBody>
