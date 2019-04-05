@@ -26,9 +26,15 @@ class Settings extends React.Component {
       .then((res) => {
         const settingsArr = res.data;
         const { length } = settingsArr;
+        const settingsMain = settingsArr.slice(0, 3);
+        let settingsMore = settingsArr.slice(3, length);
+        if (settingsMore.length === 0) {
+          settingsMore = null;
+        }
+
         this.setState({
-          settingsMain: settingsArr.slice(0, 3),
-          settingsMore: settingsArr.slice(3, length),
+          settingsMain,
+          settingsMore,
         });
       })
       .catch(err => console.log('error get details', err));
