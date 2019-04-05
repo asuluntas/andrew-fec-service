@@ -127,7 +127,7 @@ module.exports.language = language;
 const characterArr = () => {
   const charArr = [];
 
-  let num = getRandomInt(1, 15);
+  let num = getRandomInt(0, 15);
 
   while (num > 0) {
     const characterName = faker.fake('{{name.firstName}} {{name.lastName}}');
@@ -143,7 +143,7 @@ module.exports.characterArr = characterArr;
 
 const awardsArr = () => {
   const awardArray = [];
-  let num = getRandomInt(1, 4);
+  let num = getRandomInt(0, 16);
 
   const awards = [
     'Specsavers National Book Awards', 'Man Booker Prize', 'Pulitzer Prize', 'Costa Book Awards', 'Neustadt International Prize for Literature', 'Hugo Award', 'Guardian First Book Award', 'National Book Award', 'Bailey\'s Women\'s Prize for Fiction', 'The John Newbery Medal', 'Edgar Awards', 'National Book Critics Circle Award',
