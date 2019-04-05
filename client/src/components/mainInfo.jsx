@@ -14,10 +14,6 @@ const DetailBoxRowItem = styled.div`
   float: left;
 `;
 
-// const GreyItem = styled.span`
-//   color: #999999;
-// `;
-
 const MainInfo = (props) => {
   const {
     title, isbn10, isbn13, language,
@@ -25,12 +21,10 @@ const MainInfo = (props) => {
 
   return (
     <div>
-
       <div>
         <DetailBoxRowTitle>Original Title</DetailBoxRowTitle>
         <DetailBoxRowItem>{title}</DetailBoxRowItem>
       </div>
-
       <div>
         <DetailBoxRowTitle>ISBN</DetailBoxRowTitle>
         <DetailBoxRowItem>
@@ -39,12 +33,10 @@ const MainInfo = (props) => {
           <GreyItem>{`(ISBN13: ${isbn13})`}</GreyItem>
         </DetailBoxRowItem>
       </div>
-
       <div>
         <DetailBoxRowTitle>Language</DetailBoxRowTitle>
         <DetailBoxRowItem>{language}</DetailBoxRowItem>
       </div>
-
     </div>
   );
 };

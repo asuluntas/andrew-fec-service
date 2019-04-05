@@ -1,16 +1,8 @@
 /* eslint-disable class-methods-use-this */
 import React from 'react';
-import styled from 'styled-components';
 import axios from 'axios';
 import { DetailBoxRowTitle, DetailBoxRowItem } from './mainInfo.jsx';
-import { GreenButton } from './header.jsx'
-
-const CharacterWrapper = styled.span`
-  color: #00635d;
-  &:hover {
-    text-decoration: underline;
-  }
-`;
+import { GreenButton } from './header.jsx';
 
 class Characters extends React.Component {
   constructor(props) {
@@ -79,10 +71,6 @@ class Characters extends React.Component {
     return spanArray;
   }
 
-  generateCommaSpace() {
-
-  }
-
   handleClick(e) {
     e.preventDefault();
     this.setState(state => ({ moreToggle: !state.moreToggle }));
@@ -90,16 +78,14 @@ class Characters extends React.Component {
 
   render() {
     const { charactersMain, charactersMore, moreToggle } = this.state;
-    console.log(this.state);
+
     if (charactersMain === null) {
       return (null);
     }
 
     return (
       <div>
-
         <DetailBoxRowTitle>Characters</DetailBoxRowTitle>
-
         <DetailBoxRowItem>
           { this.charactersLine(charactersMain) }
           {moreToggle && (<span>, </span>) }
@@ -114,7 +100,6 @@ class Characters extends React.Component {
             )
           }
         </DetailBoxRowItem>
-
       </div>
     );
   }

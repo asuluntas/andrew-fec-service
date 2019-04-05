@@ -14,17 +14,16 @@ const DetailDataBox = (props) => {
 
   const mainInfo = {
     id, title, isbn10, isbn13, language,
-  }
+  };
+
   console.log(props.details, 'what are my props in detailDataBox')
   return (
     <div>
       <DataBoxWrapper>
-
         <MainInfo
           mainInfo={mainInfo}
         />
         <Characters id={id} />
-
       </DataBoxWrapper>
     </div>
   );
