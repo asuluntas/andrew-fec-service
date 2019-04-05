@@ -51,6 +51,11 @@ class Settings extends React.Component {
     return settingsSpanArray;
   }
 
+  handleClick(e) {
+    e.preventDefault();
+    this.setState(state => ({ moreToggle: !state.moreToggle }));
+  }
+
   render() {
     console.log(this.state);
     const { settingsMain, settingsMore, moreToggle } = this.state;
@@ -65,6 +70,15 @@ class Settings extends React.Component {
         <DetailBoxRowItem>
           {this.generateSettingsLine(settingsMain)}
           {moreToggle && this.generateSettingsLine(settingsMore)}
+          {
+            settingsMore && (
+              <GreenButton
+                onClick={(e) => { this.handleClick(e); }}
+              >
+                {moreToggle ? ' ...less' : ' ...more'}
+              </GreenButton>
+            )
+          }
         </DetailBoxRowItem>
       </div>
     );
