@@ -235,7 +235,7 @@ const settingsArr = () => {
   };
 
   const settingsArray = [];
-  const num = getRandomInt(1, 6);
+  const num = getRandomInt(0, 6);
 
   for (let i = 0; i < num; i += 1) {
     settingsArray.push(location());
