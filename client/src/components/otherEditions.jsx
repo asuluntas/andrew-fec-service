@@ -14,7 +14,7 @@ const ImgUlWrapper = styled.ul`
   display: block;
   list-style-type: disc;
   margin-block-start: 0px;
-  margin-block-end: 1em;
+  margin-block-end: 5px;
   margin-inline-start: 0px;
   margin-inline-end: 0px;
   padding-inline-start: 0px;
@@ -68,8 +68,8 @@ class Editions extends React.Component {
     editionsMain.forEach((edition, i) => {
       const { id, coverurl, title } = edition;
       imgArray.push(
-        <ImgLiWrapper key={id}>
-          <ImgWrapper key={id} src={coverurl} alt={title} />
+        <ImgLiWrapper key={id} value={id}>
+          <ImgWrapper key={id} value={id} src={coverurl} alt={title} />
         </ImgLiWrapper>
       );
     });
@@ -93,6 +93,13 @@ class Editions extends React.Component {
           <ImgUlWrapper>
             {this.generateImageLine()}
           </ImgUlWrapper>
+          <div>
+            <GreenButton>All Editions</GreenButton>
+            <GreyItem>{' | '}</GreyItem>
+            <GreenButton>Add a New Editions</GreenButton>
+            <GreyItem>{' | '}</GreyItem>
+            <GreenButton>Combine</GreenButton>
+          </div>
         </DetailBoxRowItem>
       </div>
     );
