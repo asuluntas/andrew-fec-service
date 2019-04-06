@@ -1,11 +1,12 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GreenButton, GreyItem } from '../header.jsx';
+import { GreenButton } from '../header.jsx';
+import Stars from './rating.jsx';
 
 const Wrapper = styled.div`
   padding: 0px;
   margin: 0px 0px 5px;
-  min-width: 300px;
+  min-width: 320px;
   max-width: 330px;
   height: auto;
   clear: both;
@@ -13,7 +14,7 @@ const Wrapper = styled.div`
   border: 4px solid transparent;
 
   position: absolute;
-  left: -143px;
+  left: -153px;
   bottom: 55px;
   overflow: visible;
 
@@ -91,7 +92,7 @@ const Arrow = styled.div`
 `;
 
 const Rating = styled.div`
-  padding-left: 40px
+  padding-left: 35px
   padding-top-bottom: 5px
 `;
 
@@ -113,11 +114,14 @@ const Tooltip = (props) => {
             <div>{`Published ${originalPubDate} by ${publisher}`}</div>
             <GreenButton>Enlarge cover</GreenButton>
             <StatusWrapper>
-
               <span title="status" style={{ paddingRight: '10px' }}>Want to Read</span>
               <RightButton><Arrow /></RightButton>
             </StatusWrapper>
-            <Rating>Rate this Book</Rating>
+            <Rating>
+              <span title="rating" style={{ paddingRight: '15px' }}>Rate this Book</span>
+              <Stars />
+            </Rating>
+
           </Book>
         </BorderCenter>
       </BorderFrame>
@@ -127,4 +131,3 @@ const Tooltip = (props) => {
 };
 
 export default Tooltip;
-
