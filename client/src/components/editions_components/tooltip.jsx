@@ -82,12 +82,17 @@ export const RightButton = styled.span`
 const Arrow = styled.div`
   width: 0;
   height: 0;
-  border-left: 3px solid transparent;
-  border-right: 3px solid transparent;
-  border-top: 3px solid white;
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid white;
   left: 11px
   top: 7px
   position: relative;
+`;
+
+const Rating = styled.div`
+  padding-left: 40px
+  padding-top-bottom: 5px
 `;
 
 const Tooltip = (props) => {
@@ -108,12 +113,11 @@ const Tooltip = (props) => {
             <div>{`Published ${originalPubDate} by ${publisher}`}</div>
             <GreenButton>Enlarge cover</GreenButton>
             <StatusWrapper>
-              {/* <div style={{ color: '#63ce92' }}></div> */}
+
               <span title="status" style={{ paddingRight: '10px' }}>Want to Read</span>
               <RightButton><Arrow /></RightButton>
-
             </StatusWrapper>
-
+            <Rating>Rate this Book</Rating>
           </Book>
         </BorderCenter>
       </BorderFrame>
@@ -124,12 +128,3 @@ const Tooltip = (props) => {
 
 export default Tooltip;
 
-{/* <Wrapper>
-<DropDown>
-  <div style={{ color: '#63ce92' }}><DoneIcon /></div>
-  <span title="Read">Read</span>
-</DropDown>
-  <RightButton>
-    <ShelfButton></ShelfButton>
-  </RightButton>
-</Wrapper> */}
