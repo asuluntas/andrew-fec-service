@@ -8,7 +8,7 @@ import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 import DetailDataBox from './detailDataBox.jsx';
-import Editions from './otherEditions.jsx'
+import OtherEditions from './otherEditions.jsx'
 
 const DetailBody = styled.div`
   margin: 0px auto;
@@ -110,7 +110,7 @@ class Header extends React.Component {
         {this.generatePublisherInfoLine()}
 
         {moreToggle ? (<DetailDataBox details={this.state.details} />) : null}
-        {moreToggle ? (<Editions id={id} />) : null}
+        {moreToggle ? (<OtherEditions id={id} />) : null}
 
         <Buttons>
           <GreenButton onClick={(e) => { this.handleClick(e); }}>

@@ -3,6 +3,25 @@ import axios from 'axios';
 import styled from 'styled-components';
 import { DetailBoxRowTitle, DetailBoxRowItem } from './mainInfo.jsx';
 import { GreenButton, GreyItem } from './header.jsx';
+import Edition from './edition.jsx';
+
+const ImgUlWrapper = styled.ul`
+display: block;
+list-style-type: disc;
+margin-block-start: 0px;
+margin-block-end: 5px;
+margin-inline-start: 0px;
+margin-inline-end: 0px;
+padding-inline-start: 0px;
+`;
+
+const ImgLiWrapper = styled.li`
+display: inline-block;
+list-style-type: none;
+margin: 0px;
+padding-top: 3px;
+padding-right: 2px;
+`;
 
 const ImgWrapper = styled.img`
   max-width: 55px;
@@ -10,25 +29,7 @@ const ImgWrapper = styled.img`
   border: 0;
 `;
 
-const ImgUlWrapper = styled.ul`
-  display: block;
-  list-style-type: disc;
-  margin-block-start: 0px;
-  margin-block-end: 5px;
-  margin-inline-start: 0px;
-  margin-inline-end: 0px;
-  padding-inline-start: 0px;
-`;
-
-const ImgLiWrapper = styled.li`
-  display: inline-block;
-  list-style-type: none;
-  margin: 0px;
-  padding-top: 3px;
-  padding-right: 2px;
-`;
-
-class Editions extends React.Component {
+class OtherEditions extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -62,18 +63,16 @@ class Editions extends React.Component {
       .catch(err => console.log('error get details', err));
   }
 
-  generateImageLine() {
+  generateEditionLine() {
     const { editionsMain } = this.state;
-    const imgArray = [];
+    const editionArray = [];
     editionsMain.forEach((edition, i) => {
-      const { id, coverurl, title } = edition;
-      imgArray.push(
-        <ImgLiWrapper key={id} value={id}>
-          <ImgWrapper key={id} value={id} src={coverurl} alt={title} />
-        </ImgLiWrapper>
+      const { id } = edition;
+      editionArray.push(
+        <Edition key={id} editionData={edition} />
       );
     });
-    return imgArray;
+    return editionArray;
   }
 
   render() {
@@ -91,7 +90,7 @@ class Editions extends React.Component {
         </DetailBoxRowTitle>
         <DetailBoxRowItem>
           <ImgUlWrapper>
-            {this.generateImageLine()}
+            {this.generateEditionLine()}
           </ImgUlWrapper>
           <div>
             <GreenButton>All Editions</GreenButton>
@@ -106,4 +105,4 @@ class Editions extends React.Component {
   }
 }
 
-export default Editions;
+export default OtherEditions;
