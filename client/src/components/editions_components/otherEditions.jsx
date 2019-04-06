@@ -76,7 +76,6 @@ class OtherEditions extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     const { editionsCount, editionsMain, editionsMore } = this.state;
 
     if (editionsMain === null) {

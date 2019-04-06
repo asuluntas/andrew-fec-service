@@ -19,7 +19,6 @@ const DetailDataBox = (props) => {
     id, title, isbn10, isbn13, language,
   };
 
-  console.log(props.details, 'what are my props in detailDataBox')
   return (
     <div>
       <DataBoxWrapper>

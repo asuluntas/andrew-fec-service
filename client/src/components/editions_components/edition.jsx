@@ -28,7 +28,6 @@ const TooltipWrapper = styled.div`
 const Edition = (props) => {
   const { editionData } = props;
   const { id, coverurl, title } = editionData;
-  console.log('what is edition data?', editionData);
 
   return (
     <ImgLiWrapper key={id}>
