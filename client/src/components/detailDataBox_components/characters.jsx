@@ -1,4 +1,5 @@
 /* eslint-disable class-methods-use-this */
+/* eslint-disable react/no-array-index-key */
 import React from 'react';
 import axios from 'axios';
 import { DetailBoxRowTitle, DetailBoxRowItem } from './mainInfo.jsx';
@@ -63,7 +64,7 @@ class Characters extends React.Component {
     const lastIndex = charactersMain.length - 1;
 
     charactersMain.slice(0, lastIndex).forEach((character, i) => {
-      characterSpanArray.push(<GreenButton key={i}>{character + ', '}</GreenButton>);
+      characterSpanArray.push(<GreenButton key={i}>{`${character}, `}</GreenButton>);
     });
 
     characterSpanArray.push(<GreenButton key={lastIndex}>{charactersMain[lastIndex]}</GreenButton>);

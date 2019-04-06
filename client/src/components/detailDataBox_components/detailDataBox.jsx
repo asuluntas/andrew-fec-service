@@ -1,4 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import styled from 'styled-components';
 import { MainInfo } from './mainInfo.jsx';

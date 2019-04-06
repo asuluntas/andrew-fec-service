@@ -1,5 +1,4 @@
 /* eslint-disable react/no-array-index-key */
-/* eslint-disable react/destructuring-assignment */
 /* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable class-methods-use-this */
 import React from 'react';

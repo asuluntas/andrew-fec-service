@@ -1,3 +1,4 @@
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import axios from 'axios';
@@ -64,7 +65,7 @@ class Awards extends React.Component {
     const lastIndex = array.length - 1;
 
     array.slice(0, lastIndex).forEach((award, i) => {
-      awardSpanArray.push(<GreenButton key={i}>{award + ', '}</GreenButton>);
+      awardSpanArray.push(<GreenButton key={i}>{`${award}, `}</GreenButton>);
     });
 
     awardSpanArray.push(<GreenButton key={lastIndex}>{array[lastIndex]}</GreenButton>);
