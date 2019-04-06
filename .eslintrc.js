@@ -4,6 +4,9 @@ module.exports = {
 
   rules: {
     "react/prefer-stateless-function" : 0,
+    "import/extensions": "ignorePackages",
+    "react/prop-types": 0,
+    "import/no-cycle": 0,
   },
 
   env: {

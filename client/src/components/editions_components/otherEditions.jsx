@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { DetailBoxRowTitle, DetailBoxRowItem } from './mainInfo.jsx';
-import { GreenButton, GreyItem } from './header.jsx';
+import { DetailBoxRowTitle, DetailBoxRowItem } from '../detailDataBox_components/mainInfo.jsx';
+import { GreenButton, GreyItem } from '../header.jsx';
 import Edition from './edition.jsx';
 
 const ImgUlWrapper = styled.ul`
@@ -69,7 +69,7 @@ class OtherEditions extends React.Component {
     editionsMain.forEach((edition, i) => {
       const { id } = edition;
       editionArray.push(
-        <Edition key={id} editionData={edition} />
+        <Edition key={id} editionData={edition} />,
       );
     });
     return editionArray;
@@ -94,9 +94,9 @@ class OtherEditions extends React.Component {
           </ImgUlWrapper>
           <div>
             <GreenButton>All Editions</GreenButton>
-            <GreyItem>{' | '}</GreyItem>
+            <GreyItem> | </GreyItem>
             <GreenButton>Add a New Editions</GreenButton>
-            <GreyItem>{' | '}</GreyItem>
+            <GreyItem> | </GreyItem>
             <GreenButton>Combine</GreenButton>
           </div>
         </DetailBoxRowItem>

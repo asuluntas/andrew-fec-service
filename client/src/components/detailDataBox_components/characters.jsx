@@ -2,7 +2,7 @@
 import React from 'react';
 import axios from 'axios';
 import { DetailBoxRowTitle, DetailBoxRowItem } from './mainInfo.jsx';
-import { GreenButton } from './header.jsx';
+import { GreenButton } from '../header.jsx';
 
 class Characters extends React.Component {
   constructor(props) {

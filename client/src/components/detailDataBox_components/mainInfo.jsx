@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GreyItem } from './header.jsx';
+import { GreyItem } from '../header.jsx';
 
 const DetailBoxRowTitle = styled.div`
   color: #382110;

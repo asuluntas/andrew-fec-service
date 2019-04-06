@@ -54,6 +54,8 @@ const Book = styled.div`
 `;
 
 const Tooltip = (props) => {
+  console.log('what is tooltip props? \n', props);
+
   return (
     <Wrapper>
       <BorderFrame>

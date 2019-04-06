@@ -1,8 +1,11 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable class-methods-use-this */
 import React from 'react';
 import axios from 'axios';
 import { DetailBoxRowTitle, DetailBoxRowItem } from './mainInfo.jsx';
-import { GreenButton, GreyItem } from './header.jsx';
+import { GreenButton, GreyItem } from '../header.jsx';
 
 class Settings extends React.Component {
   constructor(props) {

@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import Tooltip from './tooltip.jsx'
+import Tooltip from './tooltip.jsx';
 
 const ImgLiWrapper = styled.li`
 display: inline-block;
@@ -34,7 +34,7 @@ const Edition = (props) => {
     <ImgLiWrapper key={id}>
       <ImgWrapper key={id} src={coverurl} alt={title} />
       <TooltipWrapper>
-        <Tooltip />
+        <Tooltip {...editionData} />
       </TooltipWrapper>
     </ImgLiWrapper>
   );

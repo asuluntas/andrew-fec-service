@@ -1,14 +1,10 @@
-/* eslint-disable jsx-a11y/mouse-events-have-key-events */
-/* eslint-disable import/extensions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-/* eslint-disable jsx-a11y/no-static-element-interactions */
-/* eslint-disable react/jsx-one-expression-per-line */
 /* eslint-disable react/destructuring-assignment */
+
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import DetailDataBox from './detailDataBox.jsx';
-import OtherEditions from './otherEditions.jsx'
+import DetailDataBox from './detailDataBox_components/detailDataBox.jsx';
+import OtherEditions from './editions_components/otherEditions.jsx';
 
 const DetailBody = styled.div`
   margin: 0px auto;
