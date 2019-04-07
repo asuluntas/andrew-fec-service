@@ -31,7 +31,7 @@ const Edition = (props) => {
 
   return (
     <ImgLiWrapper key={id}>
-      <ImgWrapper key={id} src={coverurl} alt={title} />
+      <ImgWrapper className="editionImg" key={id} src={coverurl} alt={title} />
       <TooltipWrapper>
         <Tooltip {...editionData} />
       </TooltipWrapper>
