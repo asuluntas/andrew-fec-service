@@ -65,9 +65,6 @@ describe('Settings Component', () => {
     });
 
     test('Settings state moreToggle is changed to true with click', () => {
-      wrapper2.setState({ settingsMain: settingsData.main });
-      wrapper2.setState({ settingsMore: settingsData.more });
-
       wrapper2.find('.moreButton').simulate('click', { preventDefault: () => { } });
       expect(wrapper2.state('moreToggle')).toEqual(true);
     });

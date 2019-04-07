@@ -84,7 +84,7 @@ class Awards extends React.Component {
     if (awardsMain === null) {
       return (null);
     }
-
+    console.log(this.state);
     return (
       <div>
         <DetailBoxRowTitle>Awards</DetailBoxRowTitle>
@@ -95,6 +95,7 @@ class Awards extends React.Component {
           {
             awardsMore && (
               <GreenButton
+                className="moreButton"
                 onClick={(e) => { this.handleClick(e); }}
               >
                 {moreToggle ? ' ...less' : ' ...more'}
