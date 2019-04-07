@@ -15,20 +15,6 @@ margin-inline-end: 0px;
 padding-inline-start: 0px;
 `;
 
-const ImgLiWrapper = styled.li`
-display: inline-block;
-list-style-type: none;
-margin: 0px;
-padding-top: 3px;
-padding-right: 2px;
-`;
-
-const ImgWrapper = styled.img`
-  max-width: 55px;
-  height: 55px;
-  border: 0;
-`;
-
 class OtherEditions extends React.Component {
   constructor(props) {
     super(props);

@@ -12,7 +12,7 @@ describe('Edition Component', () => {
 
   const wrapper = shallow(<Edition editionData={editionData} />);
 
-  test('Edition renders properly when given detail props', () => {
+  test('Edition renders properly when given edition props', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
