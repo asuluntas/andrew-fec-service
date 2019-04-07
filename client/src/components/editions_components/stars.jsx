@@ -17,7 +17,6 @@ class Stars extends React.Component {
   }
 
   render() {
-    console.log(this.state);
     return (
       <StarRatings
         // eslint-disable-next-line react/destructuring-assignment

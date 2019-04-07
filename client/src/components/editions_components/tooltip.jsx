@@ -97,7 +97,6 @@ const Rating = styled.div`
 `;
 
 const Tooltip = (props) => {
-  console.log('what is tooltip props? \n', props);
   const {
     isbn10, isbn13, originalPubDate, publisher, title, type,
   } = props;
