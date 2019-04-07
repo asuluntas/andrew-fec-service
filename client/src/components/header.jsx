@@ -92,8 +92,6 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log(this.state);
-
     if (!this.state.details) {
       return (<div />);
     }
@@ -103,8 +101,8 @@ class Header extends React.Component {
       <DetailBody>
         {this.generatePublisherInfoLine()}
 
-        {moreToggle ? (<DetailDataBox details={this.state.details} />) : null}
-        {moreToggle ? (<OtherEditions id={id} />) : null}
+        {moreToggle ? (<DetailDataBox className="DetailDataBox" details={this.state.details} />) : null}
+        {moreToggle ? (<OtherEditions className="OtherEditions" id={id} />) : null}
 
         <Buttons>
           <GreenButton onClick={(e) => { this.handleClick(e); }}>
