@@ -13,7 +13,8 @@
     "drop:tables": "node database/dropTables.js",
     "seed": "node database/seed.js",
     "build:dev": "webpack -d --watch",
-    "test": "jest /test"
+    "test": "jest",
+    "test:fe": "jest client"
   },
   "dependencies": {
     "axios": "^0.18.0",
@@ -37,6 +38,8 @@
     "babel-jest": "^24.5.0",
     "babel-loader": "^8.0.5",
     "babel-plugin-styled-components": "^1.10.0",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
     "jest": "^24.5.0",
     "supertest": "^4.0.2",
     "webpack": "^4.29.6",

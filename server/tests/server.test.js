@@ -1,7 +1,7 @@
 
 const request = require('supertest');
-const app = require('../server/app');
-const db = require('../database/index');
+const app = require('../app');
+const db = require('../../database/index');
 
 describe('Test endpoint GET /books/:id/details', () => {
 

@@ -5,7 +5,7 @@ import DetailDataBox from './detailDataBox_components/detailDataBox.jsx';
 import OtherEditions from './editions_components/otherEditions.jsx';
 
 const DetailBody = styled.div`
-  margin: 0px auto;
+  margin: 50px auto;
   width: 455px;
   background: #FFFFFF;
   padding: 5px 0;
