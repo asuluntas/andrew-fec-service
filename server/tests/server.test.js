@@ -1,12 +1,10 @@
-
+/* eslint-disable no-undef */
 const request = require('supertest');
 const app = require('../app');
 const db = require('../../database/index');
 
 describe('Test endpoint GET /books/:id/details', () => {
-
   test('It should give correct status code response to the GET method', (done) => {
-
     request(app).get(`/books/${randomInt}}/details`).then((response) => {
       expect(response.statusCode).toBe(200);
       done();
@@ -39,18 +37,16 @@ describe('Test endpoint GET /books/:id/details', () => {
   });
 
   test('It should give error response when id does not exist', (done) => {
-    request(app).get(`/books/${randomInt +100}}/details`).then((response) => {
+    request(app).get(`/books/${randomInt + 100}}/details`).then((response) => {
       expect(response.statusCode).toBe(404);
       done();
     });
   });
-
 });
 
 //  **********************************************************
 
 describe('Test endpoint GET /books/:id/details/:table', () => {
-
   afterAll((done) => {
     db.end(() => { done(); });
   });
@@ -76,11 +72,10 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
         response.body.forEach((char) => {
           expect(char.bookId).toBe(num);
           expect(char.name).toEqual(expect.any(String));
-        })
+        });
         done();
       });
     });
-
   });
 
   //  ==========================================================
@@ -107,7 +102,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
           expect(award.bookId).toBe(num);
           expect(award.name).toEqual(expect.any(String));
           expect(award.year).toEqual(expect.any(Number));
-        })
+        });
         done();
       });
     });
@@ -116,7 +111,6 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
   //  ==========================================================
 
   describe('Test response for endpoint /books/:id/details/editions', () => {
-
     test('It should give correct status code response to GET editions table', (done) => {
       request(app).get(`/books/${randomInt}}/details/editions`).then((response) => {
         expect(response.statusCode).toBe(200);
@@ -146,7 +140,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
             coverurl: expect.any(String),
             bookId: num,
           }));
-        })
+        });
         done();
       });
     });
@@ -155,7 +149,6 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
   //  ==========================================================
 
   describe('Test response for endpoint /books/:id/details/settings', () => {
-
     test('It should give correct status code response to GET settings table', (done) => {
       request(app).get(`/books/${randomInt}}/details/settings`).then((response) => {
         expect(response.statusCode).toBe(200);
@@ -180,7 +173,7 @@ describe('Test endpoint GET /books/:id/details/:table', () => {
             country: expect.any(String),
             bookId: num,
           }));
-        })
+        });
         done();
       });
     });
