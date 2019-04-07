@@ -80,6 +80,7 @@ class Settings extends React.Component {
           {
             settingsMore && (
               <GreenButton
+                className="moreButton"
                 onClick={(e) => { this.handleClick(e); }}
               >
                 {moreToggle ? ' ...less' : ' ...more'}
