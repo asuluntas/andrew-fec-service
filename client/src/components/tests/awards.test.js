@@ -69,12 +69,12 @@ describe('Awards Component', () => {
       expect(wrapper2.state('moreToggle')).toEqual(false);
     });
 
-    test('Settings state moreToggle is changed to true with click', () => {
+    test('Awards state moreToggle is changed to true with click', () => {
       wrapper2.find('.moreButton').simulate('click', { preventDefault: () => { } });
       expect(wrapper2.state('moreToggle')).toEqual(true);
     });
 
-    test('Settings should render FOUR data values when moreToggle state is true', () => {
+    test('Awards should render 12 data values when moreToggle state is true', () => {
       // 12 green buttons because the moreButton is a green button as well
       expect(wrapper2.find(GreenButton).length).toEqual(12);
     });
