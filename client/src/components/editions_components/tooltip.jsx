@@ -46,7 +46,6 @@ const BorderFrame = styled.div`
   position: relative;
 `;
 
-
 const BorderCenter = styled.div`
   padding: 6px 6px;
   background: white;
@@ -76,7 +75,7 @@ const StatusWrapper = styled.div`
 
 `;
 
-export const RightButton = styled.span`
+const StatusButton = styled.span`
   border-left: 1px solid #38883d;
 `;
 
@@ -114,7 +113,7 @@ const Tooltip = (props) => {
             <GreenButton>Enlarge cover</GreenButton>
             <StatusWrapper>
               <span title="status" style={{ paddingRight: '10px' }}>Want to Read</span>
-              <RightButton><Arrow /></RightButton>
+              <StatusButton><Arrow /></StatusButton>
             </StatusWrapper>
             <Rating>
               <span title="rating" style={{ paddingRight: '15px' }}>Rate this Book</span>
@@ -130,3 +129,13 @@ const Tooltip = (props) => {
 };
 
 export default Tooltip;
+export {
+  Wrapper,
+  BorderFrame,
+  BorderCenter,
+  Book,
+  Arrow,
+  Stars,
+  StatusButton,
+  ToolTipArrow,
+};
