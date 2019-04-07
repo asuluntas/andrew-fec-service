@@ -14,7 +14,8 @@
     "seed": "node database/seed.js",
     "build:dev": "webpack -d --watch",
     "test": "jest",
-    "test:fe": "jest client"
+    "test:server": "jest server",
+    "test:client": "jest client"
   },
   "dependencies": {
     "axios": "^0.18.0",
