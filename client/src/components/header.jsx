@@ -93,7 +93,7 @@ class Header extends React.Component {
 
   render() {
     if (!this.state.details) {
-      return (<div />);
+      return (null);
     }
 
     const { id, moreToggle } = this.state;

@@ -20,7 +20,14 @@ describe('Header Component', () => {
     type: 'Paperback',
   };
 
-  test('Header renders when given id number', () => {
+  test('Header returns null when given improper id number (101)', () => {
+    const wrapperFalse = shallow(
+      <Header match={{ params: { id: 101 } }} />,
+    );
+    expect(wrapperFalse.find('div').length).toEqual(0);
+  });
+
+  test('Header renders when given proper id number (1)', () => {
     expect(wrapper.exists()).toBe(true);
   });
 
