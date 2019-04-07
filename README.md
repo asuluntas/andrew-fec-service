@@ -21,38 +21,23 @@ Recreates the extra details component of goodreads.com. The component is minimiz
 Multiple npm scripts provided for convenience. View full list at package.json
 
 Basic startup of project after installing dependcies:
+
 1. Seed database with npm script
-> To seed database use:
-```sh
-  npm run seed
-```
-> To erase data for reseeding use:
-```sh
-  npm run drop:tables
-```
+   1. To seed database use: `npm run seed`
+   1. To erase data for reseeding use: `npm run drop:tables`
 
-2. Start server with node or nodemon
-> To start server with node use:
-```sh
-  npm run start
-```
->To start server with nodemon, install nodemon with npm -i nodemon then use:
-```sh
-  npm run start:dev
-```
+1. Start server with node or nodemon
+   1. To start server with node use: `npm run start`
+   1. To start server with nodemon, install nodemon with npm -i nodemon then use: `npm run start:dev`
 
-3. Build and bundle client side code with webpack
-```sh
-  npm run build:dev
-```
+1. Build and bundle client side code with webpack:
+`npm run build:dev`
 
-4. View module at http://localhost/3001/books/:id
-> Id is any number between 1-100 representing 100 books
+1. View module at http://localhost/3001/books/:id
+   1. Id is any number between 1-100 representing 100 books
 
-5. Test project with jest
-```sh
-  npm test
-```
+1. Test project with jest:
+`npm test`
 
 
 ## Requirements
