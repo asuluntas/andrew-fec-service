@@ -3,7 +3,7 @@ import {
   BrowserRouter as Router,
   Route,
 } from 'react-router-dom';
-import { Header } from './header.jsx';
+import { Header } from './components/header.jsx';
 
 class App extends React.Component {
   render() {

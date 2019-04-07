@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import { MainInfo, DetailBoxRowTitle, DetailBoxRowItem } from '../detailDataBox_components/mainInfo';
+import { MainInfo, DetailBoxRowTitle, DetailBoxRowItem } from '../DetailDataBoxParts/mainInfo';
 import { GreyItem } from '../header';
 
 describe('MainInfo Component', () => {

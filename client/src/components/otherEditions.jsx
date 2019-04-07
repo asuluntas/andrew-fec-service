@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import { DetailBoxRowTitle, DetailBoxRowItem } from '../detailDataBox_components/mainInfo.jsx';
-import { GreenButton, GreyItem } from '../header.jsx';
-import Edition from './edition.jsx';
+import { DetailBoxRowTitle, DetailBoxRowItem } from './DetailDataBoxParts/mainInfo.jsx';
+import { GreenButton, GreyItem } from './header.jsx';
+import Edition from './OtherEditionsParts/edition.jsx';
 
 const ImgUlWrapper = styled.ul`
 display: block;

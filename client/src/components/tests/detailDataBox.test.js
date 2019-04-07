@@ -1,10 +1,10 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import DetailDataBox from '../detailDataBox_components/detailDataBox';
-import { MainInfo } from '../detailDataBox_components/mainInfo';
-import Characters from '../detailDataBox_components/characters';
-import Settings from '../detailDataBox_components/settings';
-import Awards from '../detailDataBox_components/awards';
+import DetailDataBox from '../detailDataBox';
+import { MainInfo } from '../DetailDataBoxParts/mainInfo';
+import Characters from '../DetailDataBoxParts/characters';
+import Settings from '../DetailDataBoxParts/settings';
+import Awards from '../DetailDataBoxParts/awards';
 
 describe('DetailDataBox Component', () => {
   const details = {

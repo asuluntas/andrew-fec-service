@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Stars from '../editions_components/stars';
+import Stars from '../OtherEditionsParts/stars';
 
 describe('Stars Component', () => {
   const wrapper = shallow(<Stars />);

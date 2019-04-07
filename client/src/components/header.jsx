@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
-import DetailDataBox from './detailDataBox_components/detailDataBox.jsx';
-import OtherEditions from './editions_components/otherEditions.jsx';
+import DetailDataBox from './detailDataBox.jsx';
+import OtherEditions from './otherEditions.jsx';
 
 const DetailBody = styled.div`
   margin: 50px auto;

@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { MainInfo } from './mainInfo.jsx';
-import Characters from './characters.jsx';
-import Settings from './settings.jsx';
-import Awards from './awards.jsx';
+import { MainInfo } from './DetailDataBoxParts/mainInfo.jsx';
+import Characters from './DetailDataBoxParts/characters.jsx';
+import Settings from './DetailDataBoxParts/settings.jsx';
+import Awards from './DetailDataBoxParts/awards.jsx';
 
 const DataBoxWrapper = styled.div`
   margin: 10px 0px;

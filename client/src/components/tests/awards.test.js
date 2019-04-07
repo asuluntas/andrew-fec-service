@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { GreenButton } from '../header';
-import Awards from '../detailDataBox_components/awards';
+import Awards from '../DetailDataBoxParts/awards';
 
 describe('Awards Component', () => {
   const wrapper = shallow(

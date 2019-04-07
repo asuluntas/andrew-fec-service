@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import OtherEditions from '../editions_components/otherEditions';
-import Edition from '../editions_components/edition';
+import OtherEditions from '../otherEditions';
+import Edition from '../OtherEditionsParts/edition';
 
 describe('OtherEditions Component', () => {
   const editionsData = {

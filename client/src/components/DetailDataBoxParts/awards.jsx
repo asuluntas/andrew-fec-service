@@ -84,7 +84,7 @@ class Awards extends React.Component {
     if (awardsMain === null) {
       return (null);
     }
-    
+
     return (
       <div>
         <DetailBoxRowTitle>Awards</DetailBoxRowTitle>

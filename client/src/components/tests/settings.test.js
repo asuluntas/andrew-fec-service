@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { GreenButton } from '../header';
-import Settings from '../detailDataBox_components/settings';
+import Settings from '../DetailDataBoxParts/settings';
 
 describe('Settings Component', () => {
   const wrapper = shallow(
