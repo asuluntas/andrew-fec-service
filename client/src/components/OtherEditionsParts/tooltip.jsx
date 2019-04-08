@@ -85,8 +85,8 @@ const Arrow = styled.div`
   border-left: 4px solid transparent;
   border-right: 4px solid transparent;
   border-top: 4px solid white;
-  left: 11px
-  top: 7px
+  left: 11px;
+  top: 7px;
   position: relative;
 `;
 
