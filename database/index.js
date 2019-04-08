@@ -1,16 +1,16 @@
 const mysql = require('mysql');
 const Promise = require('bluebird');
-//const {createTables, seedDb, seedAllData} = require('./seedMethods');
+
 
 const connection = mysql.createConnection({
   user: 'root',
   host: 'localhost',
-  database: 'books'
+  database: 'books',
 });
 
 const db = Promise.promisifyAll(connection, { multiArgs: true });
 
-//best not to always seed database on server start!
+// best not to always seed database on server start!
 db.connectAsync()
   .then(() => console.log(`connected to mysql with id ${db.threadId}`))
   .error((err) => { console.log('error connecting to db', err); });
@@ -18,16 +18,16 @@ db.connectAsync()
 module.exports = db;
 
 
-let getDetails = (id) => {
-  let queryString = 'SELECT * FROM details WHERE id = ?';
-  let params = [id];
+const getDetails = (id) => {
+  const queryString = 'SELECT * FROM details WHERE id = ?';
+  const params = [id];
 
   return db.queryAsync(queryString, params);
 };
 
-let getTableData = (table, id) => {
-  let queryString = 'SELECT * FROM ?? WHERE bookId = ?';
-  let params = [table, id];
+const getTableData = (table, id) => {
+  const queryString = 'SELECT * FROM ?? WHERE bookId = ?';
+  const params = [table, id];
   return db.queryAsync(queryString, params);
 };
 
