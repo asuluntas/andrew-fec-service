@@ -30,7 +30,7 @@ const ToolTipArrow = styled.div`
   border-right: 7px solid transparent;
   border-top: 7px solid rgb(215, 210, 196);
 
-  left: 50%
+  left: 50%;
   float: left;
   position: relative;
 `;
@@ -91,8 +91,8 @@ const Arrow = styled.div`
 `;
 
 const Rating = styled.div`
-  padding-left: 35px
-  padding-top-bottom: 5px
+  padding-left: 35px;
+  padding-top-bottom: 5px;
 `;
 
 const Tooltip = (props) => {
