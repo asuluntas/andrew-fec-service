@@ -115,7 +115,7 @@ class Header extends React.Component {
     if (!this.state.details) {
       return (null);
     }
-    console.log(this.state);
+
     const { id, moreToggle, display } = this.state;
     return (
       <DetailBody>
@@ -128,7 +128,7 @@ class Header extends React.Component {
 
         <Buttons>
           <GreenButton onClick={(e) => { this.handleClick(e); }}>
-            {moreToggle ? '...Less Detail' : 'More Details...'}
+            {display ? '...Less Detail' : 'More Details...'}
           </GreenButton>
           <GreyButton>
             edit details
