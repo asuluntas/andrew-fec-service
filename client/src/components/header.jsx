@@ -39,6 +39,10 @@ const GreyButton = styled(GreenButton)`
   margin-right: 5px;
 `;
 
+const DataBoxWrapper = styled.div`
+  display:${props => (props.shouldDisplay ? 'block' : 'none')};
+`;
+
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -46,6 +50,8 @@ class Header extends React.Component {
       moreToggle: false,
       id: (this.props.match.params.id),
       details: null,
+      display: false,
+      count: 0,
     };
   }
 
@@ -88,21 +94,37 @@ class Header extends React.Component {
 
   handleClick(e) {
     e.preventDefault();
-    this.setState(state => ({ moreToggle: !state.moreToggle }));
+    const { count } = this.state;
+    // toggle moreToggle only when count is equal to zero;
+    if (count === 0) {
+      this.setState(state => ({
+        moreToggle: !state.moreToggle,
+        count: state.count + 1,
+        display: !state.display,
+      }));
+    }
+    // toggle display when count is equal to 1;
+    if (count >= 1) {
+      this.setState(state => ({
+        display: !state.display,
+      }));
+    }
   }
 
   render() {
     if (!this.state.details) {
       return (null);
     }
-
-    const { id, moreToggle } = this.state;
+    console.log(this.state);
+    const { id, moreToggle, display } = this.state;
     return (
       <DetailBody>
         {this.generatePublisherInfoLine()}
 
-        {moreToggle ? (<DetailDataBox className="DetailDataBox" details={this.state.details} />) : null}
-        {moreToggle ? (<OtherEditions className="OtherEditions" id={id} />) : null}
+        <DataBoxWrapper shouldDisplay={display}>
+          {moreToggle ? (<DetailDataBox className="DetailDataBox" details={this.state.details} />) : null}
+          {moreToggle ? (<OtherEditions className="OtherEditions" id={id} />) : null}
+        </DataBoxWrapper>
 
         <Buttons>
           <GreenButton onClick={(e) => { this.handleClick(e); }}>
